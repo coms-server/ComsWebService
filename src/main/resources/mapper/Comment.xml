@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.CommentDAO">
+
+    <insert id="insertComment">
+        INSERT INTO b_comment (
+            comment_idx, parent_idx, article_idx, content, user_idx, name )
+        VALUES ( 
+            #{comment_idx}, #{parent_idx}, #{article_idx}, #{content}, #{user_idx}, #{name} )
+    </insert>
+
+    <select id="getComment" resultType="CommentVO">
+        SELECT  comment_idx, parent_idx, article_idx, content,
+                user_idx, name, write_date, is_modified, is_deleted
+        FROM    b_comment
+        WHERE   comment_idx = #{comment_idx}
+        ORDER BY comment_idx ASC
+    </select>
+
+    <update id="updateComment">        
+        UPDATE  b_comment
+        SET     content = #{content},
+                is_modified = 1
+        WHERE   comment_idx = #{comment_idx}
+    </update>
+
+    <update id="deleteComment">
+        UPDATE  b_comment
+        SET     is_deleted = 1
+        WHERE   comment_idx = #{comment_idx}
+    </update>
+
+    <select id="getAllComments" resultType="CommentVO">
+        SELECT  comment_idx, parent_idx, article_idx, content,
+                user_idx, name, write_date, is_modified, is_deleted
+        FROM    b_comment
+        WHERE   article_idx = #{article_idx}
+        ORDER BY    comment_idx ASC
+    </select>
+
+    <select id="getParentArticleIndex" resultType="integer">
+        SELECT  article_idx
+        FROM    b_comment
+        WHERE   comment_idx = #{comment_idx}
+    </select>
+
+</mapper>

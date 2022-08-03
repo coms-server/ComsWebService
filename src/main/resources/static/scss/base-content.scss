@@ -1,0 +1,183 @@
+@import "mixinComponent";
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+}
+
+body::before {
+    background-image: url(images/bg-main.jpg);
+    -webkit-filter: blur(5px) brightness(0.9);
+    -moz-filter: blur(5px brightness(0.9));
+    -o-filter: blur(5px) brightness(0.9);
+    -ms-filter: blur(5px) brightness(0.9);
+    filter: blur(17px) brightness(0.9);
+    transform: scale(1.02);
+    //background-color: gray; // 눈아파서 일단 이걸...
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    content: "";
+}
+
+.wrapper-header,
+body>.content {
+    float: left;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: #ffffff80;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #000000a0;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    line-height: 1.2 !important;
+}
+
+.content {
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari, Opera*/
+    }
+    >h3 {
+        font-size: 1.17em;
+    }
+    >div:not(.modal):not(.sepContainer) {
+        @include center-block(10px);
+        &:first-child.pagedesc {
+            background: #ffffff80 !important;
+            padding: 50px 0px;
+            >h2.title {
+                font-weight: bold;
+            }
+        }
+    }
+    .pagedesc {
+        .title,
+        .title a {
+            font-size: 24px;
+            font-weight: inherit;
+            color: inherit;
+            width: 100%;
+            text-align: center;
+        }
+        .desc {
+            text-align: center;
+        }
+    }
+    .box {
+        background-color: #ffffff;
+        padding: unset;
+        box-shadow: 0 2px 3px #000000a0;
+        &.border {
+            padding: 10px;
+            border: 1px solid #cccccc !important;
+        }
+        .box-header {
+            @include dark-block();
+            padding: 10px 20px;
+            font-weight: bold !important;
+            &.link {
+                cursor: pointer;
+            }
+            h1,
+            h2,
+            h3 {
+                margin: unset;
+                font-size: 1.3em;
+            }
+        }
+        >.box-content {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            .m-item,
+            .a-item {
+                padding: 10px;
+            }
+        }
+        .box-footer {
+            @include dark-block();
+            border-radius: unset;
+            padding: 10px 20px;
+            a {
+                @include default-form();
+                background-color: #212529;
+                border-color: #212529;
+                margin: unset;
+                &.link {
+                    cursor: pointer;
+                }
+                &.page-link.active {
+                    background-color: #007bff;
+                    border-color: #007bff;
+                }
+                &.pointer::before {
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 951px) {
+    body>.content {
+        margin-left: 250px;
+        padding: 30px;
+        width: calc(100% - 250px);
+        height: 100%;
+    }
+    body>.content {
+        padding: 30px;
+    }
+    body>.content>div {
+        max-width: 1100px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    body>.content {
+        width: 100%;
+        height: calc(100% - 50px);
+        margin-top: 50px;
+        padding: unset;
+    }
+    body>.content>div {
+        max-width: 900px;
+    }
+}

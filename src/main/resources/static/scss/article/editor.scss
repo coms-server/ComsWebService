@@ -1,0 +1,51 @@
+.editor-container {
+    .quill-container {
+        #quill-toolbar {
+            text-align: center;
+            button {
+                box-shadow: none;
+            }
+            button:hover {
+                box-shadow: none;
+            }
+        }
+        #quill-editor {
+            min-height: 300px;
+            >.ql-editor {
+                min-height: inherit;
+            }
+        }
+        #quill-reader {
+            border: 0px;
+        }
+    }
+    #title input[type="text"] {
+        padding: 5px;
+        width: 100%;
+        border: none;
+        font-size: 18px;
+        outline: none;
+    }
+    #attachment-container {
+        #prev-attachment-list,
+        #new-attachment-list {
+            >div:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+        .prev-attachment-noti {
+            margin-top: unset;
+            margin-bottom: 10px;
+            font-size: 8px;
+            font-weight: bold;
+            color: #888;
+        }
+    }
+    .underbar {
+        display: flex;
+        justify-content: space-between;
+        button {
+            border-radius: 6px;
+        }
+    }
+}

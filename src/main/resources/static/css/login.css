@@ -1,0 +1,79 @@
+.content .pagedesc,
+.content .login-area {
+  margin: 10px auto;
+  width: calc(100% - 20px);
+  max-width: 500px;
+}
+.content .pagedesc.login-area,
+.content .login-area.login-area {
+  padding: 20px !important;
+}
+
+#bd-login .content .login-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#bd-login .content .login-area > form {
+  width: 100%;
+}
+#bd-login .content .login-area > form > * {
+  margin: 10px auto;
+  width: calc(100% - 20px);
+  display: block;
+  max-width: 360px;
+  display: block;
+  width: 100%;
+}
+#bd-login .content .login-area > form input[type=text],
+#bd-login .content .login-area > form input[type=password],
+#bd-login .content .login-area > form input[type=submit] {
+  padding: 10px;
+}
+#bd-login .content .login-area > form input[type=text]#alias, #bd-login .content .login-area > form input[type=text]#dummyPassword,
+#bd-login .content .login-area > form input[type=password]#alias,
+#bd-login .content .login-area > form input[type=password]#dummyPassword,
+#bd-login .content .login-area > form input[type=submit]#alias,
+#bd-login .content .login-area > form input[type=submit]#dummyPassword {
+  margin: 10px auto 15px auto;
+}
+#bd-login .content .login-area > form input[type=text]#submit,
+#bd-login .content .login-area > form input[type=password]#submit,
+#bd-login .content .login-area > form input[type=submit]#submit {
+  height: 40px;
+  line-height: 18px;
+  font-size: large;
+}
+#bd-login .content .login-area > form label {
+  font-size: small;
+  font-weight: bold;
+}
+#bd-login .content .login-area span {
+  font-size: small;
+  color: #888888;
+  cursor: pointer;
+}
+#bd-login .content .login-area span:not(:first-child) {
+  border-left: 2px solid #cccccc;
+  padding-left: 4px;
+  margin-left: 4px;
+}
+#bd-login .content .login-area span > a {
+  text-decoration: underline;
+}
+#bd-login .content .login-area span > a:hover {
+  font-weight: unset;
+}
+
+.login-sns {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: auto calc(100% - 10px);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 3rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px #fff;
+}
+
+/*# sourceMappingURL=login.css.map */

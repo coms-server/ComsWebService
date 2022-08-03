@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.UserInformationDAO">
+
+    <insert id="insertUserInformation">
+        INSERT INTO u_information (
+            user_idx,       name,           birth,          term,
+            major,          status,         email_addr,     email_send,
+            phone_num,      sms_send,       home_addr,      join_date,
+            company,        website,        intro
+            )
+        VALUES (
+            #{user_idx},       #{name},           #{birth},          #{term},
+            #{major},          #{status},         #{email_addr},     #{email_send},
+            #{phone_num},      #{sms_send},       #{home_addr},      #{join_date},
+            #{company},        #{website},        #{intro}
+            )
+    </insert>
+
+    <select id="getUserInformation" resultType="UserInfoVO">
+        SELECT  user_idx,       name,           birth,          term,
+                major,          status,         email_addr,     email_send,
+                phone_num,      sms_send,       home_addr,      join_date,
+                company,        website,        intro
+        FROM    u_information
+        WHERE   user_idx = #{user_idx}
+    </select>
+
+    <update id="updateUserInformation">
+        UPDATE  u_information
+        SET     status = #{status},         phone_num = #{phone_num},   sms_send = #{sms_send},
+                email_addr = #{email_addr}, email_send = #{email_send}, home_addr = #{home_addr}
+        WHERE   user_idx = #{user_idx}
+    </update>
+
+    <delete id="deleteUserInformation">
+        DELETE
+        FROM    u_information
+        WHERE   user_idx = #{user_idx}
+    </delete>
+
+    <select id="getUserParticipatedEventList" resultType="EventVO">
+        SELECT      e.event_idx, e.title, e.event_desc, e.begin_date, e.end_date, e.url, e.is_important
+        FROM        e_list          e
+        INNER JOIN  e_participant   p
+        WHERE       e.event_idx = p.event_idx AND
+                    p.user_idx = #{user_idx}
+        ORDER BY    begin_date DESC
+    </select>
+
+    <update id="updateUserIntro">
+        UPDATE  u_information
+        SET     company = #{company},
+                website = #{website},   intro = #{intro}
+        WHERE   user_idx = #{user_idx}
+    </update>
+
+    <select id="getPendingUserList" resultType="UserInfoVO">
+        SELECT      a.user_idx,       a.name,           i.birth,          i.term,
+                    i.major,          i.status,         i.email_addr,     i.email_send,
+                    i.phone_num,      i.sms_send,       i.home_addr,      i.join_date,
+                    i.company,        i.website,        i.intro
+        FROM        u_information       AS i
+        INNER JOIN  u_authentication    AS a
+        WHERE       a.user_idx = i.user_idx AND
+                    a.permission = 0
+        ORDER BY    i.term DESC, a.name ASC
+    </select>
+
+    <select id="getApprovedUserList" resultType="UserInfoVO">
+        SELECT      a.user_idx,       a.name,           i.birth,          i.term,
+                    i.major,          i.status,         i.email_addr,     i.email_send,
+                    i.phone_num,      i.sms_send,       i.home_addr,      i.join_date,
+                    i.company,        i.website,        i.intro
+        FROM        u_information       AS i
+        INNER JOIN  u_authentication    AS a
+        WHERE       a.user_idx = i.user_idx AND
+                    a.permission = 1        AND
+                    i.term > 0
+        ORDER BY    i.term DESC, a.name ASC
+    </select>
+
+</mapper>

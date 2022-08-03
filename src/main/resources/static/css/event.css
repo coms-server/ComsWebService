@@ -1,0 +1,451 @@
+/*
+Copyright (c) 2020 by Paul Navasard (https://codepen.io/peanav/pen/ulkof)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files 
+(the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, 
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+.event {
+  border: none;
+  padding: unset;
+  /* Animations are cool!  */
+}
+.event *,
+.event *:before,
+.event *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.event body {
+  overflow: hidden;
+  font-weight: 100;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background: #000000c0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.event #calendar {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #cccccc;
+}
+.event .header {
+  height: 50px;
+  color: rgba(255, 255, 255, 0.9);
+  background: #343a40;
+  text-align: center;
+  position: relative;
+  z-index: 100;
+}
+.event .header h1 {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.3em;
+  line-height: 50px !important;
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.event .left,
+.event .right {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  top: 50%;
+  margin-top: -7.5px;
+  cursor: pointer;
+}
+.event .left {
+  border-width: 7.5px 10px 7.5px 0;
+  border-color: transparent #a09fa0 transparent transparent;
+  left: 20px;
+}
+.event .right {
+  border-width: 7.5px 0 7.5px 10px;
+  border-color: transparent transparent transparent #a09fa0;
+  right: 20px;
+}
+.event .month {
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+}
+.event .month:not(.open) {
+  height: 0;
+}
+.event .month.new {
+  -webkit-animation: fadeIn 1s ease-out;
+  opacity: 1;
+}
+.event .month.in.next {
+  -webkit-animation: moveFromTopFadeMonth 0.1s ease-out;
+  -moz-animation: moveFromTopFadeMonth 0.1s ease-out;
+  animation: moveFromTopFadeMonth 0.1s ease-out;
+  opacity: 1;
+}
+.event .month.out.next {
+  -webkit-animation: moveToTopFadeMonth 0.1s ease-in;
+  -moz-animation: moveToTopFadeMonth 0.1s ease-in;
+  animation: moveToTopFadeMonth 0.1s ease-in;
+  opacity: 1;
+}
+.event .month.in.prev {
+  -webkit-animation: moveFromBottomFadeMonth 0.1s ease-out;
+  -moz-animation: moveFromBottomFadeMonth 0.1s ease-out;
+  animation: moveFromBottomFadeMonth 0.1s ease-out;
+  opacity: 1;
+}
+.event .month.out.prev {
+  -webkit-animation: moveToBottomFadeMonth 0.1s ease-in;
+  -moz-animation: moveToBottomFadeMonth 0.1s ease-in;
+  animation: moveToBottomFadeMonth 0.1s ease-in;
+  opacity: 1;
+}
+.event .week {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background: #cccccc;
+}
+.event .week:first-child {
+  padding-top: 5px;
+}
+.event .week:last-child {
+  padding-bottom: 5px;
+}
+.event .day {
+  display: inline-block;
+  width: 2em;
+  padding-top: 5px;
+  padding-right: auto;
+  padding-bottom: 5px;
+  padding-left: auto;
+  text-align: center;
+  vertical-align: top;
+  cursor: pointer;
+  background: #cccccc;
+  position: relative;
+  z-index: 100;
+}
+.event .day.other {
+  color: rgba(255, 255, 255, 0.3);
+}
+.event .day.today {
+  color: #1f82bf;
+}
+.event .day-name {
+  font-size: 9px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing: 0.7px;
+}
+.event .day-number {
+  font-size: 24px;
+  letter-spacing: 1.5px;
+}
+.event .day .day-events {
+  list-style: none;
+  margin-top: 3px;
+  text-align: center;
+  height: 12px;
+  line-height: 6px;
+  overflow: hidden;
+}
+.event .day .day-events span {
+  vertical-align: top;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  width: 5px;
+  height: 5px;
+  line-height: 5px;
+  margin: 0 1px;
+}
+.event .details {
+  position: relative;
+  width: 100%;
+  background: #a4a4a4;
+  margin-top: 5px;
+}
+.event .details.in {
+  -webkit-animation: fadeIn 0.1s ease both;
+  -moz-animation: fadeIn 0.1s ease both;
+  animation: fadeIn 0.1s ease both;
+}
+.event .details.out {
+  -webkit-animation: fadeOut 0.1s ease both;
+  -moz-animation: fadeOut 0.1s ease both;
+  animation: fadeOut 0.1s ease both;
+}
+.event .arrow {
+  position: absolute;
+  top: -5px;
+  margin-left: -2px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #a4a4a4 transparent;
+  transition: all 0.1s ease;
+}
+.event .events {
+  padding: 7px 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.event .events.in {
+  min-height: 100px;
+  box-shadow: inset 0px -40px 5px -40px 0a0;
+  -webkit-animation: fadeIn 0.1s ease both;
+  -moz-animation: fadeIn 0.1s ease both;
+  animation: fadeIn 0.1s ease both;
+}
+.event .details.out .events {
+  -webkit-animation: fadeOutShrink 0.1s ease both;
+  -moz-animation: fadeOutShink 0.1s ease both;
+  animation: fadeOutShink 0.1s ease both;
+}
+.event .events.out {
+  -webkit-animation: fadeOut 0.1s ease both;
+  -moz-animation: fadeOut 0.1s ease both;
+  animation: fadeOut 0.1s ease both;
+}
+.event .event {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  padding: 2px 16px;
+  vertical-align: top;
+}
+.event .event > span {
+  cursor: pointer;
+}
+.event .event-category {
+  height: 10px;
+  width: 10px;
+  display: inline-block;
+  margin: 6px 0 0;
+  vertical-align: top;
+}
+.event .event span {
+  display: inline-block;
+  padding: 0 0 0 7px;
+}
+.event .entry {
+  position: relative;
+  padding: 0 0 0 25px;
+  font-size: 13px;
+  display: inline-block;
+  line-height: 30px;
+  background: transparent;
+}
+.event .entry:after {
+  position: absolute;
+  content: "";
+  height: 5px;
+  width: 5px;
+  top: 12px;
+  left: 14px;
+}
+.event .entry.blue:after {
+  background: #9ccaeb;
+}
+.event .entry.orange:after {
+  background: #f7a700;
+}
+.event .entry.green:after {
+  background: #99c66d;
+}
+.event .entry.yellow:after {
+  background: #f9e900;
+}
+@-webkit-keyframes moveFromTopFade {
+  from {
+    opacity: 0.3;
+    height: 0px;
+    margin-top: 0px;
+    -webkit-transform: translateY(-100%);
+  }
+}
+@-moz-keyframes moveFromTopFade {
+  from {
+    height: 0px;
+    margin-top: 0px;
+    -moz-transform: translateY(-100%);
+  }
+}
+@keyframes moveFromTopFade {
+  from {
+    height: 0px;
+    margin-top: 0px;
+    transform: translateY(-100%);
+  }
+}
+@-webkit-keyframes moveToTopFade {
+  to {
+    opacity: 0.3;
+    height: 0px;
+    margin-top: 0px;
+    opacity: 0.3;
+    -webkit-transform: translateY(-100%);
+  }
+}
+@-moz-keyframes moveToTopFade {
+  to {
+    height: 0px;
+    -moz-transform: translateY(-100%);
+  }
+}
+@keyframes moveToTopFade {
+  to {
+    height: 0px;
+    transform: translateY(-100%);
+  }
+}
+@-webkit-keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(-30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-30%);
+  }
+}
+@keyframes moveToTopFadeMonth {
+  to {
+    opacity: 0;
+    -moz-transform: translateY(-30%);
+  }
+}
+@-webkit-keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -moz-transform: translateY(30%);
+  }
+}
+@keyframes moveFromTopFadeMonth {
+  from {
+    opacity: 0;
+    -moz-transform: translateY(30%);
+  }
+}
+@-webkit-keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%);
+  }
+}
+@keyframes moveToBottomFadeMonth {
+  to {
+    opacity: 0;
+    -webkit-transform: translateY(30%);
+  }
+}
+@-webkit-keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%) scale(0.95);
+  }
+}
+@-moz-keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%);
+  }
+}
+@keyframes moveFromBottomFadeMonth {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(-30%);
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+@-moz-keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+@keyframes fadeOutShink {
+  to {
+    opacity: 0;
+    padding: 0px;
+    height: 0px;
+  }
+}
+
+/*# sourceMappingURL=event.css.map */

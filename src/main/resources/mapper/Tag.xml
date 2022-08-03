@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.TagDAO">
+
+    <insert id="insertTag">
+        INSERT INTO b_tag (
+            article_idx, tag
+        )
+        VALUES (
+            #{article_idx}, #{tag}
+        )
+    </insert>
+    
+    <delete id="deleteTag">
+        DELETE FROM b_tag
+        WHERE  tag_idx = #{tag_idx}
+    </delete>
+    
+    <select id="getTagList" resultType="TagVO">
+        SELECT tag_idx, tag, color
+        FROM s_tag
+    </select>
+    
+    <select id="getTagfromArticle" resultType="TagVO">
+        SELECT tag_idx, tag, color
+        FROM s_tag
+        WEHRE article_idx = #{article_idx}
+    </select>    
+    
+    <delete id="deleteTagFromArticle">
+        DELETE FROM b_tag
+        WHERE  article_idx = #{article_idx}
+    </delete>
+</mapper>

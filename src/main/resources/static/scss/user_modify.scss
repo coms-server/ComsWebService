@@ -1,0 +1,110 @@
+#task {
+    h3 {
+        font-size: 1.17em;
+    }
+    h4 {
+        font-weight: bold;
+        font-size: 1em;
+    }
+    .m-value {
+        >input {
+            width: 24.01%;
+        }
+        input,
+        select,
+        .checkbox {
+            margin: 5px 0px;
+        }
+        p {
+            font-size: small;
+        }
+        .status,
+        .email-domain,
+        .btn-address {
+            // background-color: #545b62;
+            // border-color: #545b62;
+            // color: #ffffff;
+        }
+        #post-num-area {
+            width: 49%;
+            display: flex;
+            >#modi-post-num {
+                width: calc(100% - 121.65px);
+            }
+        }
+        #email-id-area {
+            width: 49%;
+            display: flex;
+            justify-content: space-between;
+            >input {
+                width: calc(96% - 15.55px);
+            }
+        }
+        div.select-container {
+            display: flex;
+            >input {
+                width: 100%;
+                max-width: 9em;
+            }
+            >select {
+                width: 100%;
+                max-width: 9em;
+            }
+        }
+        #small {
+            display: flex;
+            justify-content: space-between;
+            >* {
+                width: 49%;
+            }
+        }
+        #big {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            >* {
+                width: 49%;
+            }
+        }
+        @media screen and (min-width: 1300px) {
+            >input {
+                width: 49%;
+            }
+            #post-num-area,
+            #small {
+                width: 100%;
+            }
+            #big>* {
+                width: 100%;
+            }
+        }
+        @media screen and (max-width: 575px) {
+            >input {
+                width: 49%;
+            }
+            #post-num-area,
+            #small {
+                width: 100%;
+            }
+            #big>* {
+                width: 100%;
+            }
+        }
+    }
+    .a-value {
+        >input,
+        .searchKey {
+            width: 49%;
+        }
+        @media screen and (max-width: 575px) {
+            >input,
+            .searchKey {
+                width: 100%;
+            }
+        }
+    }
+    #at {
+        line-height: 35.5px;
+    }
+}

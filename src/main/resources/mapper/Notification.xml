@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.NotificationDAO">
+
+    <insert id="createNotification">
+        INSERT
+        INTO    u_notification
+                ( user_idx,     refer_flag,     refer_idx,      title,      url,    date )
+        VALUES  (#{user_idx},   #{refer_flag},  #{refer_idx},   #{title},   #{url}, #{date} )
+    </insert>
+
+    <select id="getNotification" resultType="NotificationVO">
+        SELECT  noti_idx, user_idx, refer_flag, refer_idx, title, url, date, is_read
+        FROM    u_notification
+        WHERE   noti_idx = #{noti_idx}
+    </select>
+
+    <select id="getNotificationByRefer" resultType="NotificationVO">
+        SELECT  noti_idx, user_idx, refer_flag, refer_idx, title, url, date, is_read
+        FROM    u_notification
+        WHERE   user_idx = #{param1} AND
+                refer_flag = #{param2} AND
+                refer_idx = #{param3}
+    </select>
+
+    <select id="getNotificationList" resultType="NotificationVO">
+        SELECT  noti_idx, user_idx, refer_flag, refer_idx, title, url, date, is_read
+        FROM    u_notification
+        WHERE   user_idx = #{user_idx}
+    </select>
+
+    <select id="getNotificationListByRefer" resultType="NotificationVO">
+        SELECT  noti_idx, user_idx, refer_flag, refer_idx, title, url, date, is_read
+        FROM    u_notification
+        WHERE   refer_flag = #{param1} AND
+                refer_idx = #{param2}
+    </select>
+
+    <update id="setAsRead">
+        UPDATE  u_notification
+        SET     is_read = 1
+        WHERE   noti_idx = #{noti_idx}
+    </update>
+    
+    <delete id="deleteNotification">
+        DELETE
+        FROM    u_notification
+        WHERE   noti_idx = #{noti_idx}
+    </delete>
+
+</mapper>

@@ -1,0 +1,36 @@
+@charset "utf-8";
+.content {
+    max-width: 520px;
+    margin: 0px auto;
+    padding: calc(50vh - 230px) 0px;
+    .pagedesc {
+        height: 150px;
+        a {
+            display: flex;
+            justify-content: center;
+            .logo img {
+                height: 43px;
+            }
+            .title {
+                margin-left: 10px;
+                font-size: xx-large;
+                font-weight: bold;
+                width: min-content;
+            }
+        }
+    }
+    .error {
+        max-height: 300px;
+        .title {
+            font-weight: bold;
+            font-size: x-large;
+        }
+        .desc {
+            font-size: medium;
+            word-break: keep-all;
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+}

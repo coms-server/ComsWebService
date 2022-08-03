@@ -1,0 +1,99 @@
+#task h3 {
+  font-size: 1.17em;
+}
+#task h4 {
+  font-weight: bold;
+  font-size: 1em;
+}
+#task .m-value > input {
+  width: 24.01%;
+}
+#task .m-value input,
+#task .m-value select,
+#task .m-value .checkbox {
+  margin: 5px 0px;
+}
+#task .m-value p {
+  font-size: small;
+}
+#task .m-value #post-num-area {
+  width: 49%;
+  display: flex;
+}
+#task .m-value #post-num-area > #modi-post-num {
+  width: calc(100% - 121.65px);
+}
+#task .m-value #email-id-area {
+  width: 49%;
+  display: flex;
+  justify-content: space-between;
+}
+#task .m-value #email-id-area > input {
+  width: calc(96% - 15.55px);
+}
+#task .m-value div.select-container {
+  display: flex;
+}
+#task .m-value div.select-container > input {
+  width: 100%;
+  max-width: 9em;
+}
+#task .m-value div.select-container > select {
+  width: 100%;
+  max-width: 9em;
+}
+#task .m-value #small {
+  display: flex;
+  justify-content: space-between;
+}
+#task .m-value #small > * {
+  width: 49%;
+}
+#task .m-value #big {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#task .m-value #big > * {
+  width: 49%;
+}
+@media screen and (min-width: 1300px) {
+  #task .m-value > input {
+    width: 49%;
+  }
+  #task .m-value #post-num-area,
+#task .m-value #small {
+    width: 100%;
+  }
+  #task .m-value #big > * {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 575px) {
+  #task .m-value > input {
+    width: 49%;
+  }
+  #task .m-value #post-num-area,
+#task .m-value #small {
+    width: 100%;
+  }
+  #task .m-value #big > * {
+    width: 100%;
+  }
+}
+#task .a-value > input,
+#task .a-value .searchKey {
+  width: 49%;
+}
+@media screen and (max-width: 575px) {
+  #task .a-value > input,
+#task .a-value .searchKey {
+    width: 100%;
+  }
+}
+#task #at {
+  line-height: 35.5px;
+}
+
+/*# sourceMappingURL=user_modify.css.map */

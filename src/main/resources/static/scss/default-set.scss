@@ -1,0 +1,277 @@
+@import "mixinComponent";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Malgun Gothic", "맑은 고딕", -apple-system, BlinkMacSystemFont, helvetica, "Apple SD Gothic Neo", sans-serif;
+    font-weight: 350;
+    -webkit-text-size-adjust: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: subpixel-antialiased;
+    scrollbar-width: thin;
+}
+
+p {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit;
+    cursor: pointer !important;
+    &:hover,
+    &:hover * {
+        font-weight: bolder;
+        text-decoration: none !important;
+    }
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+label {
+    user-select: none;
+}
+
+hr {
+    border: 1px solid #888;
+    margin: 3px !important;
+}
+
+b {
+    font-weight: 700;
+    color: #000;
+}
+
+button,
+input[type="submit"],
+input[type="button"],
+input[type="file"],
+label[class="file"],
+label[class="file dark"],
+select,
+label.btn {
+    @include near-block();
+    @include default-form();
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: black;
+    padding: 4px 20px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    text-align-last: center;
+    text-align: center;
+    line-height: 27px;
+    cursor: pointer;
+    &.dark {
+        background-color: #212529;
+        border-color: #212529;
+        color: white;
+    }
+    &.gray {
+        background-color: #545b62;
+        border-color: #545b62;
+        color: white;
+    }
+    &.agree {
+        color: white;
+        background-color: #0074e8;
+        border-color: #0074e8;
+    }
+    &.danger {
+        color: white;
+        background-color: #bf1b44;
+        border-color: #bf1b44;
+    }
+    i.fa,
+    i.fas,
+    i.far,
+    i.fab {
+        margin: 5.5px 0px;
+        text-align: center;
+        font-size: 13px;
+    }
+}
+
+select {
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="search"],
+textarea {
+    @include near-block();
+    @include default-form();
+    padding: 4px;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    line-height: 27px;
+    &.dark {
+        background-color: #212529;
+        border-color: #212529;
+        color: white;
+    }
+    &.gray {
+        background-color: #545b62;
+        border-color: #545b62;
+        color: white;
+    }
+    &.width {
+        &.full {
+            width: 100%;
+            resize: none;
+        }
+        &.half {
+            width: 50%;
+            resize: none;
+        }
+    }
+}
+
+pre {
+    font-family: inherit !important;
+    font-size: 0.9em !important;
+    margin-bottom: unset !important;
+    word-break: break-all;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.inb>* {
+    display: inline-block;
+}
+
+.rel {
+    position: relative;
+}
+
+.noshow {
+    visibility: hidden;
+}
+
+.tip {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+i.fa,
+i.fas,
+i.far,
+i.fab {
+    text-align: center;
+    font-size: 16px;
+    &.fa-small {
+        font-size: 10px;
+    }
+    &.fa-big {
+        font-size: 24px;
+    }
+    &.fa-xbig {
+        font-size: 32px;
+    }
+}
+
+// NOTE: 이거 치워야함 복붙한거라... 임시조치임
+p.bs4 {
+    font-weight: bold;
+    * {
+        font-weight: bold;
+    }
+}
+
+// bootstrap override
+.pagination {
+    li.page-item.active {
+        color: #ffffff;
+    }
+    .pagination-info {
+        display: none;
+    }
+}
+
+.pagination-detail {
+    .pagination-info {
+        display: none;
+    }
+}
+
+tr.title {
+    font-weight: 1000;
+    font-size: large;
+}
+
+.page-item.active {
+    color: #ffffff !important;
+}
+
+.checkbox {
+    font-family: "Nanum Gothic";
+    >input[type="checkbox"] {
+        display: none;
+        vertical-align: middle;
+        +label {
+            padding-left: 1.8em;
+            position: relative;
+            margin-bottom: unset;
+            background-color: inherit !important;
+        }
+        +label:before {
+            content: "";
+            width: 1em;
+            height: 1em;
+            left: 0.2em;
+            top: 0.25em;
+            position: absolute;
+            border-top: 0.1em solid #000;
+            border-right: 0.1em solid #000;
+            border-bottom: 0.1em solid #000;
+            border-left: 0.1em solid #000;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            transition: all 300ms;
+        }
+        &:checked+label:before {
+            margin-right: 0.35em;
+            width: 0.65em;
+            height: 1em;
+            left: 0.35em;
+            top: 0em;
+            transform: rotate(210deg);
+            position: absolute;
+            border-top: 0.1em solid #0080ff;
+            border-right: 0.1em solid transparent;
+            border-bottom: 0.1em solid transparent;
+            border-left: 0.1em solid #0080ff;
+            border-radius: 0;
+            -webkit-border-radius: 0;
+            content: "";
+        }
+    }
+}

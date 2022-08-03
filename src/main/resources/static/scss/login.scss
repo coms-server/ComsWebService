@@ -1,0 +1,72 @@
+@import "mixinComponent";
+.content {
+    .pagedesc,
+    .login-area {
+        @include center-block(10px);
+        max-width: 500px;
+        &.login-area {
+            padding: 20px !important;
+        }
+    }
+}
+
+#bd-login .content .login-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    >form {
+        width: 100%;
+        >* {
+            @include center-block(10px);
+            display: block;
+            max-width: 360px;
+            display: block;
+            width: 100%;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            padding: 10px;
+            &#alias,
+            &#dummyPassword {
+                margin: 10px auto 15px auto;
+            }
+            &#submit {
+                height: 40px;
+                line-height: 18px;
+                font-size: large;
+            }
+        }
+        label {
+            font-size: small;
+            font-weight: bold;
+        }
+    }
+    span {
+        font-size: small;
+        color: #888888;
+        cursor: pointer;
+        &:not(:first-child) {
+            border-left: 2px solid #cccccc;
+            padding-left: 4px;
+            margin-left: 4px;
+        }
+        >a {
+            text-decoration: underline;
+            &:hover {
+                font-weight: unset;
+            }
+        }
+    }
+}
+
+.login-sns {
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: auto calc(100% - 10px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff;
+}

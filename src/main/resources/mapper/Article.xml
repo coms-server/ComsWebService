@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.ArticleDAO">
+
+    <insert id="insertArticle">
+        INSERT INTO b_article (
+            parent_idx, board_idx, title, content, attributes, user_idx, name, is_notice, is_subarticle )
+        VALUES (
+            #{parent_idx}, #{board_idx}, #{title}, #{content}, #{attributes}, #{user_idx}, #{name}, #{is_notice}, #{is_subarticle} );
+        <selectKey keyProperty="article_idx" resultType="integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="getArticle" resultType="ArticleVO">
+        SELECT  article_idx, parent_idx, board_idx, title, content, attributes, user_idx, 
+                name, write_date, is_subarticle, is_notice, is_deleted
+        FROM    b_article
+        WHERE   article_idx = #{article_idx}
+    </select>
+
+    <update id="updateArticle">
+        UPDATE  b_article
+        SET     title       = #{title},
+                content     = #{content},
+                attributes  = #{attributes},
+                is_notice   = #{is_notice}
+
+        WHERE   article_idx = #{article_idx}
+    </update>
+
+    <!-- 글을 직접 삭제하지 말 것 -->
+    <delete id="deleteArticle">
+        UPDATE  b_article
+        SET     is_deleted = 1
+        WHERE   article_idx = #{article_idx}
+    </delete>
+
+    <!-- 페이징용 기능. 게시판의 글 개수 -->
+    <select id="articleCountOnBoard" resultType="integer">
+        SELECT  COUNT(*)
+        FROM    b_article
+        WHERE   board_idx   = #{board_idx}  AND
+                is_deleted  = 0             AND
+                is_subarticle = 0
+    </select>
+
+    <select id="articleCountOnRoot" resultType="integer">
+        SELECT      COUNT(*)
+        FROM        b_article       A
+        INNER JOIN  s_board_list    B
+        ON          A.board_idx = B.board_idx
+        WHERE       B.root_idx  = #{root_idx}   AND
+                    is_deleted  = 0             AND
+                    is_subarticle = 0
+    </select>
+
+    <!-- board의 글 목록 불러오기
+        param1 = int board_idx
+        param2 = int offset
+        param3 = int count -->
+    <select id="getArticleListFromBoard" resultType="ArticleVO">
+        SELECT  article_idx, board_idx, title, user_idx, name, write_date, is_notice
+        FROM    b_article
+        WHERE   board_idx       = #{param1} AND
+                is_deleted      = 0         AND
+                is_subarticle   = 0
+        ORDER BY    article_idx DESC
+        LIMIT   #{param2}, #{param3};
+    </select>
+
+    <!-- root의 글 목록 불러오기
+        param1 = String root_idx
+        param2 = int offset
+        param3 = int count -->
+    <select id="getArticleListFromRoot" resultType="ArticleVO">
+        SELECT      article_idx, A.board_idx, title, user_idx,
+                    name, write_date, is_notice
+        FROM        b_article       A
+        INNER JOIN  s_board_list    B
+        ON          A.board_idx = B.board_idx
+        WHERE       B.root_idx  = #{param1}     AND
+                    is_deleted  = 0             AND
+                    is_subarticle   = 0
+        ORDER BY    article_idx DESC
+        LIMIT       #{param2}, #{param3};
+    </select>
+
+    <select id="getNoticeList" resultType="ArticleVO">
+        SELECT      article_idx, board_idx, title, user_idx, name, write_date, is_notice
+        FROM        b_article
+        WHERE       board_idx = #{board_idx}    AND
+                    is_deleted = 0  AND
+                    is_notice = 1
+        ORDER BY    article_idx DESC
+    </select>
+
+    <!-- 게시판에서 글 순번 가져오기.
+        param1 = int board_idx
+        param2 = int article_idx -->
+    <select id="getRowNumberFromBoard" resultType="integer">
+        SELECT  row_number
+        FROM    (   SELECT      ROW_NUMBER() OVER (ORDER BY article_idx DESC) AS row_number, article_idx
+                    FROM        b_article
+                    WHERE       board_idx = #{param1}       AND
+        <![CDATA[   article_idx >= #{param2}    AND     ]]>
+        is_deleted = 0              AND
+                                is_subarticle = false
+                    ORDER BY    row_number ASC) p
+        WHERE   p.article_idx = #{param2}
+    </select>
+
+    <!-- 게시판에서 글 순번 가져오기.
+        param1 = int root_idx
+        param2 = int article_idx -->
+    <select id="getRowNumberFromRoot" resultType="integer">
+        SELECT  row_number
+        FROM    (   SELECT      ROW_NUMBER() OVER (ORDER BY article_idx DESC) AS row_number, article_idx
+                    FROM        b_article A
+                    INNER JOIN  s_board_list B
+                    ON          A.board_idx = B.board_idx
+                    WHERE       B.root_idx = #{param1}      AND
+        <![CDATA[   article_idx >= #{param2}    AND     ]]>
+        is_deleted = 0              AND
+                                is_subarticle = false
+                    ORDER BY    row_number ASC) p
+        WHERE   p.article_idx = #{param2}
+    </select>
+
+    <!--param1 = int board_idx
+        param2 = int row_number -->
+    <select id="getSideArticlesFromBoard" resultType="ArticleVO">
+        SELECT  article_idx, board_idx, title, user_idx, name, write_date, is_subarticle
+        FROM    (   SELECT      ROW_NUMBER() OVER (ORDER BY article_idx DESC) AS row_number, 
+                                article_idx, board_idx, title, user_idx, name, write_date, is_subarticle
+                    FROM        b_article
+                    WHERE       board_idx = #{param1}   AND
+                                is_deleted = 0          AND
+                                is_subarticle = false
+                    ORDER BY    row_number ASC) p
+        WHERE   p.row_number = #{param2} - 1 OR p.row_number = #{param2} + 1
+    </select>
+
+    <!--param1 = int root_idx
+        param2 = int row_number -->
+    <select id="getSideArticlesFromRoot" resultType="ArticleVO">
+        SELECT  article_idx, board_idx, title, user_idx, name, write_date, is_subarticle
+        FROM    (   SELECT      ROW_NUMBER() OVER (ORDER BY article_idx DESC) AS row_number, 
+                                article_idx, A.board_idx, title, user_idx, name, write_date, is_subarticle
+                    FROM        b_article       A
+                    INNER JOIN  s_board_list    B
+                    ON          A.board_idx = B.board_idx
+                    WHERE       B.root_idx = #{param1}  AND
+                                is_deleted = 0          AND
+                                is_subarticle = false
+                    ORDER BY    row_number ASC) p
+        WHERE   p.row_number = #{param2} - 1 OR p.row_number = #{param2} + 1
+    </select>
+
+    <select id="getAnswerList" resultType="ArticleVO">
+        SELECT  article_idx, title, content, attributes, user_idx, name, write_date, is_subarticle, is_notice
+        FROM    b_article
+        WHERE   parent_idx = #{parent_idx}  AND
+                is_deleted = 0
+    </select>
+
+
+    <!-- NOTE: newVote
+        param1 = int article_idx
+        param2 = int user_idx 
+        param3 = Boolean up_vote -->
+    <insert id="insertVote">
+        INSERT INTO b_vote (
+            article_idx, user_idx, upvoted )
+        VALUES (
+            #{param1}, #{param2}, #{param3} )
+    </insert>
+
+    <!-- NOTE: getVote 
+        param1 = int article_idx
+        param2 = int user_idx -->
+    <select id="getVote" resultType="boolean">
+        SELECT  upvoted
+        FROM    b_vote
+        WHERE   article_idx = #{param1} AND
+                user_idx = #{param2}
+    </select>
+
+    <!-- NOTE: getVoteList -->
+    <select id="getVoteList" resultType="boolean">
+        SELECT  upvoted
+        FROM    b_vote
+        WHERE   article_idx = #{article_idx}
+    </select>
+
+    <!-- NOTE: updateVote
+        param1 = int article_idx
+        param2 = int user_idx 
+        param3 = Boolean up_vote -->
+    <update id="updateVote">
+        UPDATE  b_vote
+        SET     upvoted = #{param3}
+        WHERE   article_idx = #{param1} AND
+                user_idx    = #{param2}
+    </update>
+
+    <!-- NOTE: updateVote
+        param1 = int article_idx
+        param2 = int user_idx -->
+    <delete id="deleteVote">
+        DELETE  FROM b_vote
+        WHERE   article_idx = #{param1} AND
+                user_idx    = #{param2}
+    </delete>
+
+</mapper>

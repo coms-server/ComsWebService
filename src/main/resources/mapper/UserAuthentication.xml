@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.UserAuthenticationDAO">
+
+    <insert id="insertUserAuthentication">
+        INSERT INTO u_authentication (
+            alias,      password,       name,       permission  )
+        VALUES (
+            #{alias},   #{password},    #{name},    0  )
+        <selectKey keyProperty="user_idx" resultType="integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="getUserAuthentication" resultType="UserAuthVO">
+        SELECT  user_idx,       alias,          password,       name,
+                authority,      permission,     is_hibernating, last_login
+        FROM    u_authentication
+        WHERE   user_idx = #{user_idx}
+    </select>
+    
+    <select id="selectUserByAlias" resultType="UserAuthVO">
+        SELECT  user_idx,       alias,          password,       name,
+                authority,      permission,     is_hibernating, last_login
+        FROM    u_authentication
+        WHERE   alias = #{alias} AND
+                permission = 1 AND
+                is_deleted = 0
+    </select>
+
+    <!--param1 = int user_idx
+        param2 = String password -->
+    <update id="updateUserPassword">
+        UPDATE  u_authentication
+        SET     password = #{param2}
+        WHERE   user_idx = #{param1} AND
+                permission = 1 AND
+                is_deleted = 0
+    </update>
+    
+    <update id="deleteUserAuthentication">
+        UPDATE  u_authentication
+        SET     alias = #{param2}, password = #{param2}, is_deleted = 1
+        WHERE   user_idx = #{param1} AND
+                is_deleted = 0
+    </update>
+
+    <select id="isAliasExists" resultType="string">
+        SELECT  alias
+        FROM    u_authentication
+        WHERE   alias = #{alias} AND
+                permission = 1 AND
+                is_deleted = 0
+    </select>
+
+    <!--param1 = int user_idx
+        param2 = String last_login -->
+    <update id="updateUserLastLogin">
+        UPDATE  u_authentication
+        SET     last_login = #{param2}
+        WHERE   user_idx = #{param1} AND
+                permission = 1 AND
+                is_deleted = 0
+    </update>
+
+    <!-- 회원가입 승인
+        param1 = int user_idx
+        param2 = String default_auth -->
+    <update id="grantPermission">
+        UPDATE  u_authentication
+        SET     permission = 1, authority = #{param2}
+        WHERE   user_idx = #{param1}    AND
+                permission = 0 AND
+                is_deleted = 0
+    </update>
+
+    <!-- 회원가입 거부 -->
+    <delete id="denyPermission">
+        DELETE
+        FROM    u_authentication
+        WHERE   user_idx = #{user_idx}  AND
+                permission = 0 AND
+                is_deleted = 0
+    </delete>
+
+</mapper>

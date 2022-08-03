@@ -1,0 +1,37 @@
+.content {
+  max-width: 520px;
+  margin: 0px auto;
+  padding: calc(50vh - 230px) 0px;
+}
+.content .pagedesc {
+  height: 150px;
+}
+.content .pagedesc a {
+  display: flex;
+  justify-content: center;
+}
+.content .pagedesc a .logo img {
+  height: 43px;
+}
+.content .pagedesc a .title {
+  margin-left: 10px;
+  font-size: xx-large;
+  font-weight: bold;
+  width: min-content;
+}
+.content .error {
+  max-height: 300px;
+}
+.content .error .title {
+  font-weight: bold;
+  font-size: x-large;
+}
+.content .error .desc {
+  font-size: medium;
+  word-break: keep-all;
+}
+.content .error .desc a {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=error.css.map */

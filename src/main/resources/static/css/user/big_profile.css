@@ -1,0 +1,158 @@
+a {
+  color: inherit !important;
+}
+
+#TaskArea .box {
+  box-shadow: unset;
+}
+
+.userInfo {
+  padding: 10px;
+}
+.userInfo#mainInfo {
+  display: flex;
+  flex-wrap: wrap;
+}
+.userInfo .profilePic {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0px auto;
+  border-radius: 70%;
+  -webkit-border-radius: 70%;
+  background-color: gray;
+  overflow: hidden;
+  flex-grow: 0;
+}
+.userInfo .profilePic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+.userInfo .profilePic .redFilter {
+  position: absolute;
+  top: 0px;
+  width: inherit;
+  height: 60px;
+  background: red;
+  opacity: 0;
+  cursor: pointer;
+}
+.userInfo .profilePic .blackFilter {
+  position: absolute;
+  top: 60px;
+  width: inherit;
+  height: 60px;
+  background: gray;
+  opacity: 0;
+  cursor: pointer;
+}
+.userInfo .profilePic span {
+  position: absolute;
+  top: 19.25px;
+  width: 120px;
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  z-index: 1;
+}
+.userInfo .profilePic #tool {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 60px;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.userInfo .profilePic:hover .blackFilter,
+.userInfo .profilePic:hover .redFilter {
+  opacity: 0.4;
+}
+.userInfo .profilePic:hover span {
+  opacity: 1;
+  transform: scale(1);
+}
+.userInfo #briefProfile {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+.userInfo#editBtn {
+  white-space: nowrap;
+  font-size: 13px;
+  color: gray;
+  cursor: pointer;
+}
+.userInfo#subInfo, .userInfo#editSubInfo {
+  width: 100%;
+}
+.userInfo#subInfo div, .userInfo#editSubInfo div {
+  height: 37px;
+  line-height: 37px;
+}
+.userInfo#subInfo div span, .userInfo#editSubInfo div span {
+  margin-left: 4px;
+}
+.userInfo#subInfo div#company, .userInfo#subInfo div#email, .userInfo#subInfo div#website, .userInfo#editSubInfo div#company, .userInfo#editSubInfo div#email, .userInfo#editSubInfo div#website {
+  font-size: 13px;
+  max-width: calc(min-content + 25px);
+}
+.userInfo#subInfo div#company > i, .userInfo#subInfo div#email > i, .userInfo#subInfo div#website > i, .userInfo#editSubInfo div#company > i, .userInfo#editSubInfo div#email > i, .userInfo#editSubInfo div#website > i {
+  width: 16.25px;
+  margin-right: 3.75px;
+  text-align: center;
+  color: gray;
+}
+.userInfo#subInfo div#company > input, .userInfo#subInfo div#email > input, .userInfo#subInfo div#website > input, .userInfo#editSubInfo div#company > input, .userInfo#editSubInfo div#email > input, .userInfo#editSubInfo div#website > input {
+  width: calc(100% - 24px);
+}
+.userInfo#intro, .userInfo#editIntro {
+  text-align: justify;
+  font-size: 0.9em;
+}
+.userInfo#intro textarea, .userInfo#editIntro textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: none;
+}
+
+#userEvent .eventContainer {
+  padding: 1em;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease-out;
+}
+#userEvent .eventContainer:hover {
+  background-color: #dddddd;
+}
+#userEvent .eventContainer .event {
+  color: #000000c0;
+}
+#userEvent .eventContainer .event.main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+#userEvent .eventContainer .event.title {
+  font-size: large;
+  font-weight: bolder;
+}
+#userEvent .eventContainer .event.date {
+  font-size: small;
+}
+#userEvent .eventContainer .event.desc {
+  margin-top: 0.5em;
+  font-size: medium;
+}
+
+/*# sourceMappingURL=big_profile.css.map */

@@ -1,0 +1,143 @@
+#bd-signup .content .noti {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: #0074e8;
+  border-color: #0074e8 !important;
+}
+#bd-signup .content .rules {
+  background-position: 50% 50%;
+  padding: 0;
+}
+#bd-signup .content .rules .checkbox {
+  float: right;
+  font-weight: bold;
+}
+#bd-signup .content .rules .checkbox:after {
+  clear: both;
+}
+#bd-signup .content .rules .rule-desc {
+  max-height: 240px;
+  height: auto;
+  padding: 10px;
+  overflow-y: auto;
+}
+#bd-signup .content .rules .rule-desc h2 {
+  font-size: large;
+  font-weight: bold;
+}
+#bd-signup .content .rules .rule-desc * + h2 {
+  margin-top: 30px;
+}
+#bd-signup .content .rules .rule-desc h3 {
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 1em;
+}
+#bd-signup .content .rules .rule-desc p {
+  margin-left: 2em;
+  font-size: small;
+}
+#bd-signup .content .rules .rule-desc p:first-letter {
+  margin-left: 0.6em;
+}
+#bd-signup .content .rules .rule-desc li {
+  font-size: small;
+}
+#bd-signup .content .rules .rule-desc ol {
+  list-style: decimal;
+  font-size: small;
+}
+#bd-signup .content .rules .rule-desc ol li {
+  margin-left: 3em;
+}
+#bd-signup .content .rules .rule-desc ul {
+  list-style: disc;
+  font-size: small;
+}
+#bd-signup .content .rules .rule-desc ul li {
+  margin-left: 3em;
+}
+#bd-signup .content .rules .rule-desc div.checkbox {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#bd-signup .content .rules .rule-desc div.checkbox > label {
+  font-weight: bold;
+}
+#bd-signup .content .mainSign [req] {
+  color: #ff4e4e;
+}
+#bd-signup .content .mainSign [immutable] {
+  color: #3a3;
+}
+#bd-signup .content .mainSign [req],
+#bd-signup .content .mainSign [immutable] {
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  user-select: none;
+}
+#bd-signup .content .mainSign .s-item {
+  display: flex;
+  width: 100%;
+  min-height: 80px;
+  margin: 10px 0;
+  clear: both;
+}
+#bd-signup .content .mainSign .s-item .s-name {
+  width: 20%;
+  background: #f0f0f0;
+  padding: 10px;
+  text-align: right;
+  border: 2px solid #f0f0f0;
+}
+#bd-signup .content .mainSign .s-item .s-value {
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+}
+#bd-signup .content .mainSign .s-item .s-value input[type=text],
+#bd-signup .content .mainSign .s-item .s-value input[type=number] {
+  min-width: 8em;
+  width: 24%;
+}
+#bd-signup .content .mainSign .s-item .s-value input[type=text]#email_addr-id,
+#bd-signup .content .mainSign .s-item .s-value input[type=number]#email_addr-id {
+  margin-bottom: 7px;
+}
+#bd-signup .content .mainSign .s-item .s-value hr {
+  margin-left: 0;
+}
+#bd-signup .content .mainSign .s-item .s-value p {
+  font-size: small;
+}
+#bd-signup .content .mainSign .s-item .s-value select optgroup {
+  font-weight: bold;
+}
+#bd-signup .content .mainSign .s-item .s-value > *:first-child {
+  margin-top: 0;
+}
+#bd-signup .content .mainSign .s-item .s-value .checkbox {
+  margin: 0px 0;
+}
+#bd-signup .content .mainSign .s-item .s-value .checkbox:first-child {
+  margin: 0;
+}
+#bd-signup .content .mainSign .s-item .s-value .id-field {
+  display: flex;
+}
+#bd-signup .content .mainSign .s-item .s-value .domain-field {
+  display: inline-flex;
+}
+#bd-signup .content .mainSign .s-item .s-value .post-num-field {
+  display: flex;
+}
+#bd-signup .content .mainSign .s-item .underbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=signup.css.map */

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="coms.kw.ac.kr.server.dao.AttachmentDAO">
+
+    <insert id="insertAttachmentInfo">
+        INSERT
+        INTO b_attach (filename, article_idx, filesize )
+        VALUES  (#{filename}, #{article_idx}, #{filesize} );
+        <selectKey keyProperty="attach_idx" resultType="integer">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+    </insert>
+
+    <select id="getAttachmentInfo" resultType="AttachmentVO">
+        SELECT  attach_idx, article_idx, filename, filesize
+        FROM    b_attach
+        WHERE   attach_idx = #{attach_idx}
+    </select>
+
+    <select id="getArticleAttachments" resultType="AttachmentVO">
+        SELECT  attach_idx, article_idx, filename, filesize
+        FROM    b_attach
+        WHERE   article_idx = #{article_idx}
+        ORDER BY attach_idx ASC
+    </select>
+
+    <delete id="deleteArticleAttachments">
+        DELETE
+        FROM    b_attach
+        WHERE   article_idx = #{article_idx}
+    </delete>
+
+</mapper>

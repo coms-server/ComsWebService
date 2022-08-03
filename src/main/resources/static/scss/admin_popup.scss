@@ -1,0 +1,86 @@
+* {
+    font-family: "Nanum Gothic";
+}
+
+h2 {
+    text-align: center;
+}
+
+.content {
+    margin: auto;
+    width: 50%;
+    max-width: 700px;
+    min-width: 400px;
+    h2 {
+        padding: 10px;
+    }
+}
+
+.a-info {
+    p {
+        margin-block-start: 0.2em;
+        margin-block-end: 0.2em;
+    }
+    .a-item {
+        width: 100%;
+        display: flex;
+        margin: 10px 0;
+        overflow-y: auto;
+        .a-name {
+            width: 30%;
+            background: #f0f0f0;
+            padding: 10px;
+            text-align: right;
+            border: 2px solid #f0f0f0;
+        }
+        .a-value {
+            width: 70%;
+            padding: 10px;
+            border: 2px solid #f0f0f0;
+            .searchArea {
+                display: flex;
+                .searchKey {
+                    min-width: 10em;
+                    flex-grow: 1;
+                }
+                .searchBtn {
+                    white-space: nowrap;
+                }
+            }
+            &.participant {
+                flex-direction: column;
+                max-height: 10em;
+                overflow-y: scroll;
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
+                &::-webkit-scrollbar {
+                    display: none;
+                    /* Chrome, Safari, Opera*/
+                }
+                .userContainer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: nowrap;
+                    .userInfo {
+                        width: 100%;
+                    }
+                    .deleteBtn {
+                        color: coral;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.a-select {
+    display: flex;
+    justify-content: center;
+    >button {
+        margin: 0px 5px;
+    }
+}

@@ -1,0 +1,347 @@
+#notiContainer {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  margin-top: 250px;
+  margin-left: 13px;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s cubic-bezier(0.2, 0, 0.13, 1.5), scale cubic-bezier(0.2, 0, 0.13, 1.5); }
+  #notiContainer:not(.open) {
+    opacity: 0;
+    display: none; }
+  #notiContainer .notiList {
+    max-height: 158px;
+    width: 320px;
+    background: #ffffff;
+    border-top: 1px solid #cccccc;
+    border-right: 2px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 2px solid #cccccc;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */ }
+    #notiContainer .notiList::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Opera*/ }
+  #notiContainer .noti {
+    display: flex;
+    line-height: 1.5;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc; }
+    #notiContainer .noti:first-child {
+      border-top: 1px solid #cccccc; }
+    #notiContainer .noti > *:hover {
+      background: #cccccc; }
+    #notiContainer .noti .dummy {
+      width: 100%;
+      padding: 10px;
+      font-size: small; }
+    #notiContainer .noti .link {
+      padding: 10px;
+      display: flex;
+      width: calc(100% - 48px);
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      cursor: pointer;
+      background-origin: padding-box; }
+      #notiContainer .noti .link.read .title,
+      #notiContainer .noti .link.read .date {
+        color: #cccccc;
+        font-weight: unset; }
+      #notiContainer .noti .link .title {
+        font-size: small;
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+      #notiContainer .noti .link .date {
+        font-size: small; }
+    #notiContainer .noti .delete {
+      width: 38px;
+      padding: 10px;
+      color: coral;
+      cursor: pointer; }
+
+#notiCount {
+  margin: 10px 0 0 calc(100vw - 119px);
+  height: 20px;
+  line-height: 14px;
+  z-index: 2000;
+  position: absolute;
+  padding: 2px;
+  border: 1px solid #dc3545;
+  border-radius: 10px;
+  font-size: small;
+  font-weight: bold;
+  background-color: #dc3545;
+  color: #ffffff; }
+  #notiCount:not(.open) {
+    display: none; }
+
+#sidebar {
+  display: grid;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 250px;
+  background-color: #ffffff;
+  vertical-align: middle;
+  overflow: hidden;
+  line-height: normal; }
+  #sidebar > div {
+    text-align: center; }
+  #sidebar h4 {
+    display: flex;
+    align-items: center; }
+    #sidebar h4 :first-child {
+      margin-right: 0.5em; }
+  #sidebar i {
+    width: 1em; }
+    #sidebar i.fa-circle {
+      font-size: 0.5rem; }
+  #sidebar *:not(i) {
+    color: #000000;
+    font-size: 1rem; }
+  #sidebar .sidebar-toggle {
+    display: none;
+    position: fixed;
+    left: 0px;
+    margin: 9px; }
+  #sidebar .top-logo {
+    background-color: #cccccc;
+    text-align: center; }
+  #sidebar .nav-search {
+    padding: 10px 0px 10px 0px; }
+    #sidebar .nav-search > * {
+      height: 30px; }
+  #sidebar .logo-divide {
+    height: 50px;
+    background: linear-gradient(to bottom, #cccccc, #ffffff); }
+  #sidebar .nav-list:not(.nav-usr) {
+    padding: 10px 20px 10px 20px; }
+  #sidebar .nav-usr {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden; }
+    #sidebar .nav-usr .toolbar {
+      height: 70px;
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center; }
+      #sidebar .nav-usr .toolbar .noti-toggle.open i {
+        color: #0074e8; }
+      #sidebar .nav-usr .toolbar > a {
+        align-items: center;
+        padding: 10px;
+        width: 3em;
+        flex-grow: 1;
+        cursor: pointer; }
+    #sidebar .nav-usr .profileBox {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 20px; }
+      #sidebar .nav-usr .profileBox .profile {
+        display: flex;
+        align-items: center;
+        cursor: pointer; }
+        #sidebar .nav-usr .profileBox .profile .profilePic {
+          width: 60px;
+          height: 60px;
+          border-radius: 70%;
+          -webkit-border-radius: 70%;
+          background-color: gray;
+          overflow: hidden; }
+          #sidebar .nav-usr .profileBox .profile .profilePic img {
+            width: 60px;
+            height: 60px; }
+        #sidebar .nav-usr .profileBox .profile .desc {
+          height: min-content;
+          margin-left: 15px;
+          font-size: large;
+          font-weight: bold;
+          line-height: inherit; }
+      #sidebar .nav-usr .profileBox .logout form {
+        height: 100%;
+        width: 99.33px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer; }
+  #sidebar #linkList {
+    display: flex;
+    height: auto;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */ }
+    #sidebar #linkList::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari, Opera*/ }
+    #sidebar #linkList .nav-board {
+      display: flex;
+      flex-direction: column; }
+      #sidebar #linkList .nav-board div.rootBoard > a,
+      #sidebar #linkList .nav-board div .subBoard > a {
+        border-right: 3px solid #ffffff; }
+        #sidebar #linkList .nav-board div.rootBoard > a:hover,
+        #sidebar #linkList .nav-board div .subBoard > a:hover {
+          animation: hey 1s 0s infinite alternate; }
+
+@keyframes hey {
+  10% {
+    border-right: 3px solid #dddddd; }
+  50% {
+    border-right: 10px solid #0074e8; }
+  100% {
+    border-right: 3px solid #dddddd; } }
+        #sidebar #linkList .nav-board div.rootBoard > a:active,
+        #sidebar #linkList .nav-board div .subBoard > a:active {
+          border-right: 3px solid #0074e8; }
+      #sidebar #linkList .nav-board div.rootBoard > a h4 {
+        height: 60px; }
+      #sidebar #linkList .nav-board div.subBoard {
+        margin-left: 1em; }
+      @media screen and (min-width: 951px) {
+        #sidebar #linkList .nav-board div.subBoardContainer {
+          max-height: 0px;
+          opacity: 0;
+          display: none;
+          transition: max-height 0.2s ease-in, opacity 0.2s ease-in; }
+          #sidebar #linkList .nav-board div.subBoardContainer.open {
+            max-height: 1000px;
+            opacity: 1;
+            display: block; } }
+      #sidebar #linkList .nav-board div .nav-category-label {
+        height: 40px;
+        line-height: 40px;
+        margin: unset; }
+      #sidebar #linkList .nav-board div a {
+        width: 100%;
+        display: block; }
+      #sidebar #linkList .nav-board .url {
+        font-size: small; }
+  #sidebar #contributors {
+    position: relative;
+    display: grid;
+    grid-template: "socialLink" 40px "link" 15px "copyright" 15px;
+    column-gap: 10px;
+    height: 30px;
+    text-align: center;
+    color: #888888; }
+    #sidebar #contributors a,
+    #sidebar #contributors span {
+      height: 15px;
+      font-size: 10px;
+      white-space: nowrap;
+      color: #888888; }
+    #sidebar #contributors > #socialLink {
+      display: flex;
+      justify-content: space-evenly;
+      grid-area: socialLink;
+      padding-top: 10px; }
+      #sidebar #contributors > #socialLink img {
+        height: 20px; }
+      #sidebar #contributors > #socialLink i {
+        color: #868686;
+        font-size: 20px; }
+    #sidebar #contributors .link,
+    #sidebar #contributors .copyright {
+      line-height: 15px; }
+    #sidebar #contributors .link {
+      grid-area: link; }
+    #sidebar #contributors .copyright {
+      grid-area: copyright; }
+    #sidebar #contributors span:not(:first-child) {
+      border-left: 2px solid #cccccc;
+      padding-left: 4px;
+      margin-left: 4px; }
+    #sidebar #contributors span > a {
+      text-decoration: underline;
+      cursor: pointer; }
+      #sidebar #contributors span > a:hover {
+        font-weight: unset; }
+
+@media screen and (min-width: 951px) {
+  #notiCount {
+    margin: 191px 0px 0px 48px; }
+  #sidebar {
+    grid-template-rows: 100px 0px min-content auto 80px;
+    box-shadow: inset -40px 0px 10px -40px #000000a0;
+    height: 100%; }
+    #sidebar .profileContainer,
+    #sidebar .login {
+      box-shadow: inset -40px 0px 10px -40px #000000a0; }
+    #sidebar .top-logo {
+      height: 100px;
+      box-shadow: inset -40px 0px 10px -40px #000000a0; }
+      #sidebar .top-logo img {
+        height: 80px;
+        margin: 10px; }
+    #sidebar .nav-usr {
+      padding: 20px 0px 10px 0px;
+      background: linear-gradient(to bottom, #cccccc, #ffffff); }
+      #sidebar .nav-usr a {
+        display: inline-block; }
+      #sidebar .nav-usr .toolbar .logout {
+        display: none; } }
+
+@media screen and (max-width: 950px) {
+  #notiContainer {
+    margin-top: 40px;
+    margin-left: calc(100vw - 327px); }
+  #sidebar {
+    grid-template-rows: 50px 50px auto minmax(0, calc(100% - 150px)) 80px;
+    width: 100vw;
+    height: 50px;
+    min-width: 320px;
+    transition: height 0.2s cubic-bezier(0, 0, 0.2, 1); }
+    #sidebar.open {
+      height: 100vh;
+      max-height: 100%; }
+    #sidebar h1 {
+      margin-top: 0px; }
+    #sidebar .sidebar-toggle {
+      display: block; }
+    #sidebar .top-logo {
+      height: 50px;
+      width: 100vw; }
+      #sidebar .top-logo a {
+        display: inline-block;
+        height: 100%; }
+      #sidebar .top-logo img {
+        height: 40px;
+        margin: 5px; }
+    #sidebar .nav-usr {
+      height: 70px; }
+      #sidebar .nav-usr.login {
+        height: 0px; }
+      #sidebar .nav-usr .toolbar {
+        flex-wrap: wrap;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        height: 50px;
+        overflow: hidden; }
+        #sidebar .nav-usr .toolbar a {
+          display: inline-block;
+          height: 50px;
+          width: 50px;
+          align-items: center; }
+          #sidebar .nav-usr .toolbar a i {
+            margin: 7px; }
+          #sidebar .nav-usr .toolbar a p {
+            visibility: hidden; }
+    #sidebar #linkList {
+      max-height: calc(100vh - 150px); }
+    #sidebar #contributors {
+      width: 100vw; } }

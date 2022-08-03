@@ -1,0 +1,21 @@
+{
+  "name": "Coms-Server",
+  "version": "1.0.0",
+  "description": "## 개발 및 배포 환경 * Java 11 * Tomcat 8 * Maria DB 10 * Ubuntu Server 18",
+  "main": "index.js",
+  "scripts": {
+      "build:sass" "sass src/main/resources/static/scss:src/main/resources/static/css"
+      "watch:sass" "sass --watch sass src/main/resources/static/scss:src/main/resources/static/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://c3d34799a91b7839d149873b8e2515e34512af98@github.com/SnowlyFeast/Coms-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SnowlyFeast/Coms-Server/issues"
+  },
+  "homepage": "https://github.com/SnowlyFeast/Coms-Server#readme"
+}

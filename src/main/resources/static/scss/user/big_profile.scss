@@ -1,0 +1,164 @@
+a {
+    color: inherit !important;
+}
+
+#TaskArea .box {
+    box-shadow: unset;
+}
+
+.userInfo {
+    padding: 10px;
+    &#mainInfo {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .profilePic {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin: 0px auto;
+        border-radius: 70%;
+        -webkit-border-radius: 70%;
+        background-color: gray;
+        overflow: hidden;
+        flex-grow: 0;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+        }
+        .redFilter {
+            position: absolute;
+            top: 0px;
+            width: inherit;
+            height: 60px;
+            background: red;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .blackFilter {
+            position: absolute;
+            top: 60px;
+            width: inherit;
+            height: 60px;
+            background: gray;
+            opacity: 0;
+            cursor: pointer;
+        }
+        span {
+            position: absolute;
+            top: 19.25px;
+            width: 120px;
+            font-size: medium;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            opacity: 0;
+            z-index: 1;
+        }
+        #tool {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 60px;
+            opacity: 0;
+            z-index: 2;
+            cursor: pointer;
+        }
+        &:hover {
+            .blackFilter,
+            .redFilter {
+                opacity: 0.4;
+            }
+            span {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+    #briefProfile {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-grow: 1;
+    }
+    &#editBtn {
+        white-space: nowrap;
+        font-size: 13px;
+        color: rgb(128, 128, 128);
+        cursor: pointer;
+    }
+    &#subInfo,
+    &#editSubInfo {
+        width: 100%;
+        div {
+            height: 37px;
+            line-height: 37px;
+            span {
+                margin-left: 4px;
+            }
+            &#company,
+            &#email,
+            &#website {
+                font-size: 13px;
+                max-width: calc(min-content + 25px);
+                >i {
+                    width: 16.25px;
+                    margin-right: 3.75px;
+                    text-align: center;
+                    color: rgb(128, 128, 128);
+                }
+                >input {
+                    width: calc(100% - 24px);
+                }
+            }
+        }
+    }
+    &#intro,
+    &#editIntro {
+        text-align: justify;
+        font-size: 0.9em;
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            resize: none;
+        }
+    }
+}
+
+#userEvent {
+    .eventContainer {
+        padding: 1em;
+        cursor: pointer;
+        background-color: #ffffff;
+        transition: background-color 0.2s ease-out;
+        &:hover {
+            background-color: #dddddd;
+        }
+        .event {
+            color: #000000c0;
+            &.main {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+            &.title {
+                font-size: large;
+                font-weight: bolder;
+            }
+            &.date {
+                font-size: small;
+            }
+            &.desc {
+                margin-top: 0.5em;
+                font-size: medium;
+            }
+        }
+    }
+}

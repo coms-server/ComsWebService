@@ -1,0 +1,40 @@
+@import "mixinComponent";
+a {
+    color: inherit !important;
+}
+
+div.sepContainer {
+    display: flex;
+    flex-wrap: wrap;
+    background: none;
+    margin: 0px auto;
+    div.seperator {
+        @include center-block(10px);
+        display: flex;
+        flex-direction: column;
+        &:not(.box) {
+            justify-content: space-between;
+            >div {
+                &:not(:last-child) {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        >div {
+            width: 100%;
+        }
+    }
+    @media screen and (min-width: 1300px) {
+        div.seperator {
+            width: calc(50% - 20px);
+            &.important {
+                width: min-content;
+                flex-grow: 0;
+            }
+            &.board {
+                width: min-content;
+                flex-grow: 1;
+            }
+        }
+    }
+}

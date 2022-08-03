@@ -1,0 +1,16 @@
+@import "mixinComponent";
+.seperator {
+    @include center-block(10px);
+    max-width: 700px;
+}
+
+// .content {
+//     .alert {
+//         max-width: 700px;
+//     }
+//     @media screen and (min-width: 1300px) {
+//         .alert {
+//             max-width: 1080px;
+//         }
+//     }
+// }

@@ -1,0 +1,148 @@
+#bd-signup {
+    .content {
+        .noti {
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            background-color: #0074e8;
+            border-color: #0074e8 !important;
+        }
+        .rules {
+            background-position: 50% 50%;
+            padding: 0;
+            .checkbox {
+                float: right;
+                font-weight: bold;
+                &:after {
+                    clear: both;
+                }
+            }
+            .rule-desc {
+                max-height: 240px;
+                height: auto;
+                padding: 10px;
+                overflow-y: auto;
+                h2 {
+                    font-size: large;
+                    font-weight: bold;
+                }
+                *+h2 {
+                    margin-top: 30px;
+                }
+                h3 {
+                    font-size: medium;
+                    font-weight: bold;
+                    margin-left: 1em;
+                }
+                p {
+                    margin-left: 2em;
+                    font-size: small;
+                    &:first-letter {
+                        margin-left: 0.6em;
+                    }
+                }
+                li {
+                    font-size: small;
+                }
+                ol {
+                    list-style: decimal;
+                    font-size: small;
+                    li {
+                        margin-left: 3em;
+                    }
+                }
+                ul {
+                    list-style: disc;
+                    font-size: small;
+                    li {
+                        margin-left: 3em;
+                    }
+                }
+                div.checkbox {
+                    margin-top: 0.5em;
+                    margin-bottom: 0.5em;
+                    >label {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+        .mainSign {
+            [req] {
+                color: rgb(255, 78, 78);
+            }
+            [immutable] {
+                color: #3a3;
+            }
+            [req],
+            [immutable] {
+                font-weight: bold;
+                cursor: pointer;
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                user-select: none;
+            }
+            .s-item {
+                display: flex;
+                width: 100%;
+                min-height: 80px;
+                margin: 10px 0;
+                clear: both;
+                .s-name {
+                    width: 20%;
+                    background: #f0f0f0;
+                    padding: 10px;
+                    text-align: right;
+                    border: 2px solid #f0f0f0;
+                }
+                .s-value {
+                    width: 80%;
+                    padding: 10px;
+                    border: 2px solid #f0f0f0;
+                    input[type="text"],
+                    input[type="number"] {
+                        min-width: 8em;
+                        width: 24%;
+                        &#email_addr-id {
+                            margin-bottom: 7px;
+                        }
+                    }
+                    hr {
+                        margin-left: 0;
+                    }
+                    p {
+                        font-size: small;
+                    }
+                    select {
+                        optgroup {
+                            font-weight: bold;
+                        }
+                    }
+                    >*:first-child {
+                        margin-top: 0;
+                    }
+                    .checkbox {
+                        margin: 0px 0;
+                        &:first-child {
+                            margin: 0;
+                        }
+                    }
+                    .id-field {
+                        display: flex;
+                    }
+                    .domain-field {
+                        display: inline-flex;
+                    }
+                    .post-num-field {
+                        display: flex;
+                    }
+                }
+                .underbar {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}

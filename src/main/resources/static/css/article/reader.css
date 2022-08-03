@@ -1,0 +1,344 @@
+.post {
+  margin: 10px;
+}
+.post .article-area .title,
+.post .answer-area .title {
+  display: grid;
+  grid-template: "article-header article-title" minmax(2em, auto) "article-header article-info" calc(1em + 8px)/min-content auto;
+}
+.post .article-area .title .article-header,
+.post .answer-area .title .article-header {
+  grid-area: article-header;
+}
+.post .article-area .title .article-header span,
+.post .answer-area .title .article-header span {
+  display: block;
+  width: 1.5em;
+  text-align: middle;
+  font-size: xx-large;
+  line-height: 56px;
+}
+.post .article-area .title .article-title,
+.post .answer-area .title .article-title {
+  grid-area: article-title;
+}
+.post .article-area .title .article-info,
+.post .answer-area .title .article-info {
+  grid-area: article-info;
+  font-size: 0.9rem;
+  user-select: none;
+}
+.post .article-area .title .article-info > *,
+.post .answer-area .title .article-info > * {
+  padding-left: 4px;
+}
+.post .article-area .title .article-info > *:first-child,
+.post .answer-area .title .article-info > *:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+.post .article-area .title .article-info a:hover,
+.post .answer-area .title .article-info a:hover {
+  font-weight: 350;
+}
+.post .article-area .title .article-info .author,
+.post .answer-area .title .article-info .author {
+  color: #fff;
+}
+.post .article-area .title .article-info .wdate,
+.post .article-area .title .article-info .modify,
+.post .article-area .title .article-info .delete,
+.post .answer-area .title .article-info .wdate,
+.post .answer-area .title .article-info .modify,
+.post .answer-area .title .article-info .delete {
+  color: #ccc;
+}
+.post .article-area .article,
+.post .answer-area .article {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+}
+@media screen and (max-width: 40em) {
+  .post .article-area .article,
+.post .answer-area .article {
+    grid-template: "contentArea" minmax(200px, auto) "commentArea" auto/auto;
+  }
+  .post .article-area .article > .voteArea.left,
+.post .answer-area .article > .voteArea.left {
+    display: none;
+  }
+}
+@media screen and (min-width: 40em) {
+  .post .article-area .article,
+.post .answer-area .article {
+    grid-template: "voteAreaLeft contentArea" minmax(200px, auto) "commentArea commentArea" auto/auto 1fr;
+  }
+}
+.post .article-area .article .content-area,
+.post .answer-area .article .content-area {
+  grid-area: contentArea;
+  display: grid;
+}
+@media screen and (max-width: 40em) {
+  .post .article-area .article .content-area,
+.post .answer-area .article .content-area {
+    grid-template: "attachmentArea attachmentArea" min-content "quillArea quillArea" auto "voteAreaBottom profileArea" min-content/1fr auto;
+  }
+  .post .article-area .article .content-area > .dummyArea,
+.post .answer-area .article .content-area > .dummyArea {
+    display: none;
+  }
+  .post .article-area .article .content-area > .voteArea.bottom > div,
+.post .answer-area .article .content-area > .voteArea.bottom > div {
+    padding: unset;
+  }
+}
+@media screen and (min-width: 40em) {
+  .post .article-area .article .content-area,
+.post .answer-area .article .content-area {
+    grid-template: "attachmentArea attachmentArea" min-content "quillArea quillArea" auto "dummyArea profileArea" min-content/1fr auto;
+  }
+  .post .article-area .article .content-area > .voteArea.bottom,
+.post .answer-area .article .content-area > .voteArea.bottom {
+    display: none;
+  }
+}
+.post .article-area .article .content-area .attachment,
+.post .answer-area .article .content-area .attachment {
+  grid-area: attachmentArea;
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: small;
+  color: #777;
+}
+.post .article-area .article .content-area .quill-area,
+.post .answer-area .article .content-area .quill-area {
+  grid-area: quillArea;
+}
+.post .article-area .article .content-area .quill-area > div,
+.post .answer-area .article .content-area .quill-area > div {
+  border: 0px;
+}
+.post .article-area .article .content-area .commentAction,
+.post .answer-area .article .content-area .commentAction {
+  grid-area: commentAction;
+}
+.post .article-area .article .content-area .dummyArea,
+.post .answer-area .article .content-area .dummyArea {
+  grid-area: dummyArea;
+}
+.post .article-area .article .content-area .frag_profile,
+.post .answer-area .article .content-area .frag_profile {
+  grid-area: profileArea;
+  display: flex;
+  white-space: nowrap;
+  padding: 5px;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0 2px #00000040;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  cursor: pointer;
+}
+.post .article-area .article .content-area .frag_profile .profilePic,
+.post .answer-area .article .content-area .frag_profile .profilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 70%;
+  -webkit-border-radius: 70%;
+  background-color: gray;
+  overflow: hidden;
+}
+.post .article-area .article .content-area .frag_profile .profilePic img,
+.post .answer-area .article .content-area .frag_profile .profilePic img {
+  width: 40px;
+  height: 40px;
+}
+.post .article-area .article .content-area .frag_profile .name,
+.post .answer-area .article .content-area .frag_profile .name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: small;
+}
+.post .article-area .article .content-area .frag_profile:hover,
+.post .answer-area .article .content-area .frag_profile:hover {
+  box-shadow: 0 0 2px #0080ff;
+  -webkit-box-shadow: 0 0 2px #0080ff;
+}
+.post .article-area .article .voteArea,
+.post .answer-area .article .voteArea {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.post .article-area .article .voteArea.bottom,
+.post .answer-area .article .voteArea.bottom {
+  grid-area: voteAreaBottom;
+  flex-direction: row;
+  justify-content: center;
+}
+.post .article-area .article .voteArea.left,
+.post .answer-area .article .voteArea.left {
+  margin-top: 17px;
+  grid-area: voteAreaLeft;
+  flex-direction: column;
+  justify-content: start;
+}
+.post .article-area .article .voteArea i,
+.post .answer-area .article .voteArea i {
+  cursor: pointer;
+  color: gray;
+}
+.post .article-area .article .voteArea > div,
+.post .answer-area .article .voteArea > div {
+  padding: 10px;
+}
+.post .article-area .article .voteArea .vote,
+.post .answer-area .article .voteArea .vote {
+  width: 3em;
+  padding-bottom: 13px;
+  font-size: large;
+  font-weight: bolder;
+  text-align: center;
+}
+.post .article-area .article .voteArea .upVote.upVote:hover *,
+.post .article-area .article .voteArea .downVote.upVote:hover *,
+.post .answer-area .article .voteArea .upVote.upVote:hover *,
+.post .answer-area .article .voteArea .downVote.upVote:hover * {
+  color: #008500;
+}
+.post .article-area .article .voteArea .upVote.downVote:hover *,
+.post .article-area .article .voteArea .downVote.downVote:hover *,
+.post .answer-area .article .voteArea .upVote.downVote:hover *,
+.post .answer-area .article .voteArea .downVote.downVote:hover * {
+  color: coral;
+}
+.post .article-area .article .voteArea .voted.upVote *,
+.post .answer-area .article .voteArea .voted.upVote * {
+  color: green;
+}
+.post .article-area .article .voteArea .voted.downVote *,
+.post .answer-area .article .voteArea .voted.downVote * {
+  color: coral;
+}
+.post .article-area .article .voteArea .positive,
+.post .answer-area .article .voteArea .positive {
+  color: rgba(0, 133, 0, 0.8);
+}
+.post .article-area .article .voteArea .negative,
+.post .answer-area .article .voteArea .negative {
+  color: rgba(255, 127, 80, 0.8);
+}
+.post .article-area .article .voteArea .zerosum,
+.post .answer-area .article .voteArea .zerosum {
+  color: black;
+}
+.post .article-area .article .comment-area,
+.post .answer-area .article .comment-area {
+  grid-area: commentArea;
+}
+
+.underbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Side Article */
+.aside-doc-area .article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.aside-doc-area .article-list:last-child {
+  border-bottom: 1px solid #ccc;
+}
+.aside-doc-area .article-list div.no-article {
+  line-height: 50px;
+  height: 50px;
+  padding-left: calc(1em + 40px);
+  border-top: 1px dotted #dddddd;
+  border-left: 3px solid #dddddd;
+  border-collapse: collapse;
+}
+.aside-doc-area .article-list div.no-article:hover {
+  background: #dddddd;
+}
+.aside-doc-area .article-list .article-container {
+  display: grid;
+  grid-template: "doc-idx doc-title doc-author" "doc-idx doc-date  doc-author"/40px auto 140px;
+  height: 50px;
+  border-top: 1px dotted #dddddd;
+  border-left: 3px solid #dddddd;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  transition: background-color 0.1s ease-out, border 0.1s ease-out;
+  overflow: hidden;
+}
+.aside-doc-area .article-list .article-container:hover {
+  background-color: #dddddd;
+}
+.aside-doc-area .article-list .article-container.selected {
+  border-left: 3px solid #0074e8;
+}
+.aside-doc-area .article-list .article-container .doc-idx {
+  grid-area: doc-idx;
+  line-height: 50px;
+  text-align: center;
+}
+.aside-doc-area .article-list .article-container .doc-title {
+  grid-area: doc-title;
+  height: 27.25px;
+  line-height: 27.25px;
+  margin-left: 16px;
+  vertical-align: bottom;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer;
+}
+.aside-doc-area .article-list .article-container .doc-date {
+  grid-area: doc-date;
+  height: 22.75px;
+  line-height: 22.75px;
+  margin-left: 16px;
+  font-size: small;
+  color: #888888;
+  cursor: pointer;
+}
+.aside-doc-area .article-list .article-container .doc-author {
+  grid-area: doc-author;
+  max-width: 160px;
+}
+.aside-doc-area .article-list .article-container .doc-author .frag_profile {
+  grid-area: profileArea;
+  height: 50px;
+  width: min-content;
+  display: flex;
+  white-space: nowrap;
+  padding: 5px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.aside-doc-area .article-list .article-container .doc-author .frag_profile .profilePic {
+  width: 40px;
+  height: 40px;
+  border-radius: 70%;
+  -webkit-border-radius: 70%;
+  background-color: gray;
+  overflow: hidden;
+}
+.aside-doc-area .article-list .article-container .doc-author .frag_profile .profilePic img {
+  width: 40px;
+  height: 40px;
+}
+.aside-doc-area .article-list .article-container .doc-author .frag_profile .name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: small;
+}
+
+/*# sourceMappingURL=reader.css.map */

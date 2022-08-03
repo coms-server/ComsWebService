@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <springProfile name="production">
+        <property resource="config/application-production.properties"/>
+        <property name="LOG_PATH" value="${logging.file.path}"/>
+    </springProfile>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} --- %green([%t]) %highlight(%-5level) %cyan(%logger{20}) : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/logback.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} --- ${PID:-} [%t] %-5level %logger{35} : %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <springProfile name="develop">
+        <logger name="coms.kw.ac.kr" level="DEBUG">
+            <appender-ref ref="STDOUT"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="production">
+        <property resource="config/application-production.properties"/>
+        <logger name="coms.kw.ac.kr" level="INFO">
+            <appender-ref ref="FILE"/>
+        </logger>
+        <property name="LOG_PATH" value="${logging.file.path}"/>
+    </springProfile>
+
+</configuration>

@@ -1,0 +1,129 @@
+@charset "utf-8";
+.comment-area {
+    padding: 10px;
+    .commentEditor {
+        padding: 10px 0px;
+    }
+    .commentEditor,
+    .modified-text {
+        &.modified-text {
+            display: flex;
+        }
+        &>form {
+            // padding: 5px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: stretch;
+            > :not(.flexcontent) {
+                display: none;
+            }
+            >textarea {
+                height: 74px !important;
+                font-size: small;
+            }
+            >div {
+                height: 74px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+
+/* Comment 상단 (댓글 정보) */
+
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 5px;
+}
+
+.comment .comment-info {
+    font-size: small;
+    margin-bottom: 5px;
+}
+
+.comment .comment-info>*:first-child {
+    font-weight: bold;
+    border-left: none;
+    padding-left: 0;
+}
+
+.comment .comment-info>* {
+    border-left: 2px solid #ccc;
+    padding-left: 4px;
+}
+
+.comment .tool {
+    float: right;
+    display: flex;
+}
+
+.comment .etc {
+    position: relative;
+}
+
+.comment .etc .menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    font-size: small;
+    width: 52px;
+    padding: 3px 5px;
+    background: #fff;
+    box-shadow: 0 0 2px #00000040;
+    display: none;
+}
+
+.comment .etc:hover .menu {
+    display: block;
+    box-shadow: 0 0 2px #0080ff;
+    -webkit-box-shadow: 0 0 2px #0080ff;
+    border-top-right-radius: 4px;
+}
+
+.comment .etc:hover button {
+    border-bottom-right-radius: 0;
+}
+
+.comment .etc .menu ul {
+    padding: unset;
+    li {
+        margin: 2px 0;
+        padding: 2px;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
+.comment .etc .menu li:hover {
+    background: #ddd;
+}
+
+.comment .comment-content {
+    font-size: small;
+}
+
+
+/* 대댓글 디자인 */
+
+.reComment {
+    margin: 0 0 0 3.5%;
+}
+
+.textbox {
+    resize: none;
+    width: calc(100% - 104px);
+}
+
+
+/* Collapsible */
+
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}

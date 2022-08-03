@@ -1,0 +1,18 @@
+@import "mixinComponent";
+.nav-tabs {
+    border-bottom: 1px solid #cccccc;
+    .nav-item {
+        width: 25%;
+        >.nav-link {
+            text-align: center;
+            border: unset;
+            padding: 0.5rem !important;
+            &:hover {
+                border-bottom: 2px solid #dddddd;
+            }
+            &.active {
+                border-bottom: 2px solid #0074e8;
+            }
+        }
+    }
+}

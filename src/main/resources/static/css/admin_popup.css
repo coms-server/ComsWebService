@@ -1,0 +1,86 @@
+* {
+  font-family: "Nanum Gothic";
+}
+
+h2 {
+  text-align: center;
+}
+
+.content {
+  margin: auto;
+  width: 50%;
+  max-width: 700px;
+  min-width: 400px;
+}
+.content h2 {
+  padding: 10px;
+}
+
+.a-info p {
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+.a-info .a-item {
+  width: 100%;
+  display: flex;
+  margin: 10px 0;
+  overflow-y: auto;
+}
+.a-info .a-item .a-name {
+  width: 30%;
+  background: #f0f0f0;
+  padding: 10px;
+  text-align: right;
+  border: 2px solid #f0f0f0;
+}
+.a-info .a-item .a-value {
+  width: 70%;
+  padding: 10px;
+  border: 2px solid #f0f0f0;
+}
+.a-info .a-item .a-value .searchArea {
+  display: flex;
+}
+.a-info .a-item .a-value .searchArea .searchKey {
+  min-width: 10em;
+  flex-grow: 1;
+}
+.a-info .a-item .a-value .searchArea .searchBtn {
+  white-space: nowrap;
+}
+.a-info .a-item .a-value.participant {
+  flex-direction: column;
+  max-height: 10em;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+.a-info .a-item .a-value.participant::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera*/
+}
+.a-info .a-item .a-value.participant .userContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.a-info .a-item .a-value.participant .userContainer .userInfo {
+  width: 100%;
+}
+.a-info .a-item .a-value.participant .userContainer .deleteBtn {
+  color: coral;
+  cursor: pointer;
+}
+
+.a-select {
+  display: flex;
+  justify-content: center;
+}
+.a-select > button {
+  margin: 0px 5px;
+}
+
+/*# sourceMappingURL=admin_popup.css.map */

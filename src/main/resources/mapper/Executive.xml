@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.ExecutiveDAO">
+
+    <insert id="insertExecutive">
+        INSERT INTO u_executive (
+            user_idx,       nth,        position,       active )
+        VALUES (
+            #{user_idx},    #{nth},     #{position},    #{active} )
+    </insert>
+
+    <select id="getExecutive" resultType="ExecutiveVO">
+        SELECT      exec_idx, e.user_idx, nth, position, active, a.name
+        FROM        u_executive         AS e
+        INNER JOIN  u_authentication    AS a
+        WHERE       e.user_idx = a.user_idx AND
+                    exec_idx = #{exec_idx}
+    </select>
+
+    <update id="updateExecutive">
+        UPDATE  u_executive
+        SET     nth = #{nth}, position = #{position}, active = #{active}
+        WHERE   exec_idx = #{exec_idx}
+    </update>
+
+    <delete id="deleteExecutive">
+        DELETE
+        FROM    u_executive
+        WHERE   exec_idx = #{exec_idx}
+    </delete>
+
+    <select id="getCount" resultType="integer">
+        SELECT  COUNT(*)
+        FROM    u_executive
+        WHERE   active = #{active}
+    </select>
+
+    <select id="getActiveExecutiveList" resultType="ExecutiveVO">
+        SELECT      exec_idx, e.user_idx, nth, position, active, a.name
+        FROM        u_executive         AS e
+        INNER JOIN  u_authentication    AS a
+        WHERE       e.user_idx = a.user_idx AND
+                    active = 1
+        ORDER BY    nth ASC, position ASC
+    </select>
+
+    <select id="getNonActiveExecutiveList" resultType="ExecutiveVO">
+        SELECT      exec_idx, e.user_idx, nth, position, active, a.name
+        FROM        u_executive         AS e
+        INNER JOIN  u_authentication    AS a
+        WHERE       e.user_idx = a.user_idx AND
+                    active = 0
+        ORDER BY    nth ASC, position ASC
+    </select>
+
+    <!-- 
+        param1 = int user_idx
+        param2 = String authority
+     -->
+    <update id="updateAuthority">
+        UPDATE  u_authentication
+        SET     authority = #{param2}
+        WHERE   user_idx = #{param1}
+    </update>
+
+</mapper>

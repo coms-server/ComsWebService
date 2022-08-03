@@ -1,0 +1,19 @@
+.nav-tabs {
+  border-bottom: 1px solid #cccccc;
+}
+.nav-tabs .nav-item {
+  width: 25%;
+}
+.nav-tabs .nav-item > .nav-link {
+  text-align: center;
+  border: unset;
+  padding: 0.5rem !important;
+}
+.nav-tabs .nav-item > .nav-link:hover {
+  border-bottom: 2px solid #dddddd;
+}
+.nav-tabs .nav-item > .nav-link.active {
+  border-bottom: 2px solid #0074e8;
+}
+
+/*# sourceMappingURL=selectable.css.map */

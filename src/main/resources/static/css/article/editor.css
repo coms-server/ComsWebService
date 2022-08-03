@@ -1,0 +1,45 @@
+.editor-container .quill-container #quill-toolbar {
+  text-align: center;
+}
+.editor-container .quill-container #quill-toolbar button {
+  box-shadow: none;
+}
+.editor-container .quill-container #quill-toolbar button:hover {
+  box-shadow: none;
+}
+.editor-container .quill-container #quill-editor {
+  min-height: 300px;
+}
+.editor-container .quill-container #quill-editor > .ql-editor {
+  min-height: inherit;
+}
+.editor-container .quill-container #quill-reader {
+  border: 0px;
+}
+.editor-container #title input[type=text] {
+  padding: 5px;
+  width: 100%;
+  border: none;
+  font-size: 18px;
+  outline: none;
+}
+.editor-container #attachment-container #prev-attachment-list > div:not(:last-child),
+.editor-container #attachment-container #new-attachment-list > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+.editor-container #attachment-container .prev-attachment-noti {
+  margin-top: unset;
+  margin-bottom: 10px;
+  font-size: 8px;
+  font-weight: bold;
+  color: #888;
+}
+.editor-container .underbar {
+  display: flex;
+  justify-content: space-between;
+}
+.editor-container .underbar button {
+  border-radius: 6px;
+}
+
+/*# sourceMappingURL=editor.css.map */

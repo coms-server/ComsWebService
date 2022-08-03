@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.EventDAO">
+    
+    <insert id="insertEvent">
+        INSERT INTO e_list (
+            title, event_desc, begin_date, end_date, url, is_important )
+        VALUES (
+            #{title}, #{event_desc}, #{begin_date}, #{end_date}, #{url}, #{is_important} )
+    </insert>
+
+    <select id="getEvent" resultType="EventVO">
+        SELECT  event_idx, title, event_desc, begin_date, end_date, url, is_important
+        FROM    e_list
+        WHERE   event_idx = #{event_idx}    AND
+                is_deleted = 0
+    </select>
+    
+    <update id="updateEvent">
+        UPDATE  e_list
+        SET     title = #{title}, event_desc = #{event_desc}, begin_date = #{begin_date},
+                end_date = #{end_date}, url = #{url}, is_important = #{is_important}
+        WHERE   event_idx = #{event_idx}
+    </update>
+
+    <delete id="deleteEvent">
+        UPDATE  e_list
+        SET     is_deleted = 1
+        WHERE   event_idx = #{event_idx}
+    </delete>
+
+    <!-- 행사 목록 불러오기
+        param1 = int offset
+        param2 = int count -->
+    <select id="getEventList" resultType="EventVO">
+        SELECT      event_idx, title, event_desc, begin_date, end_date, url, is_important
+        FROM        e_list
+        WHERE       is_deleted = 0
+        ORDER BY    begin_date DESC
+    </select>
+
+    <!-- 
+        param1 = DATE begin_date
+        param2 = DATE end_date
+     -->
+    <select id="getEventListBetween" resultType="EventVO">
+        SELECT  event_idx, title, event_desc, begin_date, end_date, url, is_important
+        FROM    e_list
+        WHERE   ((begin_date BETWEEN #{param1} AND #{param2}) OR
+                (end_date BETWEEN #{param1} AND #{param2}))   AND
+                is_deleted = 0
+        ORDER BY    begin_date DESC
+    </select>
+
+    <insert id="addParticipant">
+        INSERT INTO e_participant (
+            event_idx, user_idx, is_participated, note )
+        VALUES (
+            #{event_idx}, #{user_idx}, #{is_participated}, #{note} )
+    </insert>
+    
+    <select id="getParticipantList" resultType="EventVO">
+        SELECT  event_idx, user_idx, is_participated, note
+        FROM    e_participant
+        WHERE   event_idx = #{event_idx}
+    </select>
+
+    <update id="updateParticipant">
+        UPDATE  e_participant
+        SET     is_participant = #{is_participant}, note = #{note}
+        WHERE   user_idx = {user_idx} AND
+                event_idx = {event_idx}
+    </update>
+
+    <delete id="deleteParticipant">
+        DELETE  FROM e_participant
+        WHERE   event_idx = #{event_idx} AND
+                user_idx = #{user_idx}
+    </delete>
+
+</mapper>

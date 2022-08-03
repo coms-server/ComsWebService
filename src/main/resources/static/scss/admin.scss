@@ -1,0 +1,190 @@
+@import "mixinComponent";
+a {
+    color: inherit !important;
+}
+
+table {
+    table-layout: fixed;
+
+    th, td {
+        overflow: hidden;
+    }
+}
+
+.information {
+    padding: 20px !important;
+    text-align: justify;
+
+    h3 {
+        font-size: 1.17em !important;
+    }
+
+    > p {
+        font-size: small;
+        padding-left: 1em;
+    }
+}
+
+#TaskArea .box {
+    box-shadow: unset;
+    h3 {
+        font-size: 1.17em;
+    }
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 20px !important;
+    .nav-item {
+        width: 25%;
+        >.nav-link {
+            text-align: center;
+            border: unset;
+            &:hover {
+                border-bottom: 2px solid #dddddd;
+            }
+            &.active {
+                border-bottom: 2px solid #0074e8;
+            }
+        }
+    }
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    .term,
+    .role,
+    .manage {
+        width: 6em;
+    }
+    #newUsrList,
+    #legacyUsrList {
+        font-weight: bolder;
+        border-bottom: 1px solid #444444;
+    }
+    td,
+    th {
+        height: 32px;
+        font-size: medium;
+        border-bottom: 1px solid #cccccc;
+        vertical-align: center;
+    }
+    .manage {
+        padding: 5px 0px;
+    }
+    .event.title {
+        min-width: 2em;
+    }
+    .event.date {
+        width: 16em;
+    }
+    .event.manage {
+        width: 6em;
+        >button {
+            white-space: nowrap;
+        }
+    }
+}
+
+input,
+button {
+    &#download,
+    &#add-event,
+    &#add-exec {
+        width: calc(100% - 20px);
+        margin: 10px;
+    }
+}
+
+.content {
+    margin: auto;
+    .a-info {
+        p {
+            margin-block-start: 0.2em;
+            margin-block-end: 0.2em;
+        }
+        .a-item {
+            width: 100%;
+            display: flex;
+            overflow-y: auto;
+            .a-name {
+                width: 30%;
+                background: #f0f0f0;
+                padding: 10px;
+                text-align: right;
+                border: 2px solid #f0f0f0;
+            }
+            .a-value {
+                width: 70%;
+                padding: 10px;
+                border: 2px solid #f0f0f0;
+                .searchArea {
+                    display: flex;
+                    .searchKey {
+                        min-width: 10em;
+                        flex-grow: 1;
+                    }
+                    .searchBtn {
+                        white-space: nowrap;
+                    }
+                }
+                &.userSelector {
+                    display: flex;
+                }
+                &.participant {
+                    .userNames {
+                        display: flex;
+                        flex-direction: column;
+                        max-height: 10em;
+                        overflow-y: scroll;
+                        -ms-overflow-style: none;
+                        /* IE and Edge */
+                        scrollbar-width: none;
+                        /* Firefox */
+                        &::-webkit-scrollbar {
+                            display: none;
+                            /* Chrome, Safari, Opera*/
+                        }
+                        >label {
+                            margin-bottom: unset;
+                        }
+                    }
+                    .userContainer {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: nowrap;
+                        .userInfo {
+                            width: 100%;
+                        }
+                        .deleteBtn {
+                            color: coral;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                &.nth-field {
+                    display: flex;
+                    .active {
+                        background-color: #545b62;
+                        border-color: #545b62;
+                        color: #ffffff;
+                    }
+                }
+                #extract {
+                    border-radius: 6px;
+                }
+                #nth {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.underbar {
+    margin: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}

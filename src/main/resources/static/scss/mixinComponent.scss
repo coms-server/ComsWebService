@@ -1,0 +1,54 @@
+@mixin dark-block {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+@mixin default-form {
+    height: 37px;
+    box-shadow: 0 0 2px #00000040;
+    -webkit-box-shadow: 0 0 2px #00000040;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    font-size: 13px !important;
+    margin: unset;
+    outline: none;
+    &:hover,
+    &:focus {
+        box-shadow: 0 0 2px #0080ff;
+        -webkit-box-shadow: 0 0 2px #0080ff;
+    }
+}
+
+@mixin center-block($vertical-margin) {
+    margin: $vertical-margin auto;
+    width: calc(100% - 20px);
+}
+
+@mixin near-block {
+    &.near {
+        &.top {
+            border-top-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        &.bottom {
+            border-bottom-left-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+        &.left {
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        &.right {
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.UserHibernationDAO">
+
+    <select id="getAllUsersLastLogin" resultType="UserAuthVO">
+        SELECT  user_idx,   name,   is_hibernating, last_login
+        FROM    u_authentication
+        WHERE   permission = 1
+    </select>
+
+    <update id="updateHibernatingFlag">
+        UPDATE  u_authentication
+        SET     is_hibernating = #{param2}
+        WHERE   user_idx = #{param1}
+    </update>
+
+    <insert id="moveToHibernate">
+        INSERT INTO u_hibernate (
+            user_idx,       name,           birth,          term,
+            major,          status,         email_addr,     email_send,
+            phone_num,      sms_send,       home_addr,      join_date,
+            company,        website,        intro
+            )
+        SELECT  user_idx,       name,           birth,          term,
+                major,          status,         email_addr,     email_send,
+                phone_num,      sms_send,       home_addr,      join_date,
+                company,        website,        intro
+        FROM    u_information
+        WHERE   user_idx = #{user_idx}
+    </insert>
+
+    <insert id="restoreFromHibernate">
+        INSERT INTO u_information (
+            user_idx,       name,           birth,          term,
+            major,          status,         email_addr,     email_send,
+            phone_num,      sms_send,       home_addr,      join_date,
+            company,        website,        intro
+            )
+        SELECT  user_idx,       name,           birth,          term,
+                major,          status,         email_addr,     email_send,
+                phone_num,      sms_send,       home_addr,      join_date,
+                company,        website,        intro
+        FROM    u_hibernate
+        WHERE   user_idx = #{user_idx}
+    </insert>
+
+    <delete id="deleteUserHibernate">
+        DELETE
+        FROM    u_hibernate
+        WHERE   user_idx = #{user_idx}
+    </delete>
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coms.kw.ac.kr.server.dao.StaticInformationDAO">
+
+    <select id="getRootBoardList" resultType="RootBoardVO">
+        SELECT      root_idx, context_path, root_name, root_desc, is_qna, is_important
+        FROM        s_board_root
+        ORDER BY    root_idx ASC
+    </select>
+
+    <select id="getChildBoardList" resultType="integer">
+        SELECT      board_idx
+        FROM        s_board_list
+        WHERE       root_idx = #{root_idx}
+        ORDER BY    board_idx ASC
+    </select>
+
+    <select id="getBoardList" resultType="BoardVO">
+        SELECT      board_idx, root_idx, context_path, board_name, board_desc
+        FROM        s_board_list
+        ORDER BY    board_idx ASC
+    </select>
+
+    <select id="getPositionList" resultType="PositionVO">
+        SELECT      position_idx, position
+        FROM        s_position
+        ORDER BY    position_idx ASC
+    </select>
+
+    <select id="getMajorList" resultType="MajorVO">
+        SELECT      major_idx, major, college
+        FROM        s_major
+        ORDER BY    major_idx ASC
+    </select>
+
+    <select id="getStatusList" resultType="StatusVO">
+        SELECT      status_idx, status
+        FROM        s_status
+        ORDER BY    status_idx ASC
+    </select>
+
+</mapper>
