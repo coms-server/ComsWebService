@@ -8,7 +8,7 @@
   <p align="center">
     광운대학교 컴퓨터연구회(COM's) 웹페이지 개발 프로젝트입니다.
     <br />
-    <a href="https://coms.kw.ac.kr"><strong>베타 페이지로 이동 »</strong></a>
+    <a href="https://coms.kw.ac.kr"><strong> 페이지로 이동 »</strong></a>
   </p>
 </p>
 
