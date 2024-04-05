@@ -23,7 +23,7 @@
 <a href="https://github.com/SnowlyFeast"><img src="https://avatars0.githubusercontent.com/u/33473622?s=460&v=4" title="SnowlyFeast" width="80" height="80"></a>
 <a href="https://github.com/grayroom"><img src="https://avatars0.githubusercontent.com/u/43588644?s=460&u=fd358afa0e9b262bc52498cb20616081b1ee1a8a&v=4" title="grayroom" width="80" height="80"></a>
 <a href="https://github.com/mijien0179"><img src="https://avatars0.githubusercontent.com/u/40613626?s=460&u=35261c790e2a070c1b01ed1020fc4ea906794c73&v=4" title="mijien0179" width="80" height="80"></a>
-<a href="https://https://github.com/RapidWorkers"><img src="https://avatars2.githubusercontent.com/u/6492071?s=400&u=d38d43f09a55ecddb7453414707a578f4e755e4c&v=4" title="RapidWorkers" width="80" height="80"></a>
+<a href="https://github.com/RapidWorkers"><img src="https://avatars2.githubusercontent.com/u/6492071?s=400&u=d38d43f09a55ecddb7453414707a578f4e755e4c&v=4" title="RapidWorkers" width="80" height="80"></a>
 
 ## SCSS
 이 프로젝트에서는 css를 직접 작성하는 대신 scss로 작성된 스타일시트를 dart-sass로 컴파일하여 사용합니다. Node.js환경에서 npm을 사용한다는 가정하에 아래 명령어를 통해 sass(scss)를 설치할 수 있습니다.
